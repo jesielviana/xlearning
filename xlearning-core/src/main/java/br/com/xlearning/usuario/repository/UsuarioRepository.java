@@ -1,4 +1,4 @@
-package br.com.xlearning.usuario.dao;
+package br.com.xlearning.usuario.repository;
 
 import java.util.List;
 import javax.persistence.PersistenceException;

@@ -2,8 +2,10 @@ package br.com.xlearning.parametro.dao;
 
 import javax.ejb.EJBException;
 import javax.persistence.PersistenceException;
+
 import br.com.xlearning.dao.util.GenericDAO;
 import br.com.xlearning.parametro.entidade.Parametro;
+import br.com.xlearning.parametro.repository.ParametroRepository;
 
 /**
  * @author jesiel

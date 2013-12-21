@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import br.com.xlearning.dao.util.GenericDAO;
 import br.com.xlearning.questionario.entidade.Questao;
 import br.com.xlearning.questionario.entidade.Resposta;
+import br.com.xlearning.questionario.repository.RespostaRepository;
 import br.com.xlearning.usuario.entidade.Aluno;
 
 /**

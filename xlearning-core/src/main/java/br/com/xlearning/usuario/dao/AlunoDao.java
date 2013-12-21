@@ -6,8 +6,10 @@ package br.com.xlearning.usuario.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+
 import br.com.xlearning.curso.entidade.Curso;
 import br.com.xlearning.dao.util.GenericDAO;
 import br.com.xlearning.enumeracao.SituacaoAlunoDisciplina;
@@ -15,6 +17,7 @@ import br.com.xlearning.enumeracao.status.StatusQuestionarioAluno;
 import br.com.xlearning.enumeracao.status.StatusUsuario;
 import br.com.xlearning.usuario.entidade.Aluno;
 import br.com.xlearning.usuario.entidade.Usuario;
+import br.com.xlearning.usuario.repository.AlunoRepository;
 
 /**
  * @author Jesiel Viana

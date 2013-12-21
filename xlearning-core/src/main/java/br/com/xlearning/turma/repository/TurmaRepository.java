@@ -2,7 +2,7 @@
  * TCC BSI 2013
  * xlearning.com.br
  */
-package br.com.xlearning.turma.dao;
+package br.com.xlearning.turma.repository;
 
 import java.util.List;
 

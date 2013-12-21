@@ -7,6 +7,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import br.com.xlearning.curso.entidade.Curso;
+import br.com.xlearning.curso.repository.CursoRepository;
 import br.com.xlearning.dao.util.GenericDAO;
 import br.com.xlearning.enumeracao.status.EnumStatus;
 import br.com.xlearning.usuario.entidade.Coordenador;

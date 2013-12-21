@@ -1,4 +1,4 @@
-package br.com.xlearning.post.dao;
+package br.com.xlearning.post.repository;
 
 import java.util.Date;
 import java.util.List;

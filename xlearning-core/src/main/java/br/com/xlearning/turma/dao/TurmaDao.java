@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import br.com.xlearning.curso.entidade.Curso;
 import br.com.xlearning.dao.util.GenericDAO;
 import br.com.xlearning.turma.entidade.Turma;
+import br.com.xlearning.turma.repository.TurmaRepository;
 
 
 /**

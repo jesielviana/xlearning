@@ -5,10 +5,13 @@ package br.com.xlearning.disciplina.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+
 import br.com.xlearning.dao.util.GenericDAO;
 import br.com.xlearning.disciplina.entidade.AlunoDisciplina;
+import br.com.xlearning.disciplina.repository.AlunoDisciplinaRepository;
 import br.com.xlearning.enumeracao.SituacaoAlunoDisciplina;
 
 /**

@@ -1,4 +1,4 @@
-package br.com.xlearning.curso.dao;
+package br.com.xlearning.curso.repository;
 
 import java.util.List;
 

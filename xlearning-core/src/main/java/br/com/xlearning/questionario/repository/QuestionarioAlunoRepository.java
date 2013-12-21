@@ -1,7 +1,7 @@
 /**
  * Xlearning 2013
  */
-package br.com.xlearning.questionario.dao;
+package br.com.xlearning.questionario.repository;
 
 import java.util.List;
 

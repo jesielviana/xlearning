@@ -9,6 +9,7 @@ import br.com.xlearning.dao.util.GenericDAO;
 import br.com.xlearning.enumeracao.TipoPost;
 import br.com.xlearning.enumeracao.status.StatusPost;
 import br.com.xlearning.post.entidade.Post;
+import br.com.xlearning.post.repository.PostRepository;
 
 public class PostDao extends GenericDAO<Post> implements PostRepository{
 

@@ -7,6 +7,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import br.com.xlearning.conteudo.entidade.ConteudoAcademico;
+import br.com.xlearning.conteudo.repository.ConteudoAcademicoRepository;
 import br.com.xlearning.dao.util.GenericDAO;
 import br.com.xlearning.disciplina.entidade.Disciplina;
 

@@ -1,4 +1,4 @@
-package br.com.xlearning.parametro.dao;
+package br.com.xlearning.parametro.repository;
 
 import java.util.List;
 

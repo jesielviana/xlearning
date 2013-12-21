@@ -5,11 +5,14 @@
 package br.com.xlearning.usuario.dao;
 
 import java.util.List;
+
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+
 import br.com.xlearning.dao.util.GenericDAO;
 import br.com.xlearning.usuario.entidade.Usuario;
 import br.com.xlearning.usuario.entidade.UsuarioAdministrativo;
+import br.com.xlearning.usuario.repository.UsuarioAdministrativoRepository;
 
 
 /**

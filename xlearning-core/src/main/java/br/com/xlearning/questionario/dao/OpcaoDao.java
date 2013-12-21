@@ -11,6 +11,7 @@ import javax.persistence.PersistenceException;
 
 import br.com.xlearning.dao.util.GenericDAO;
 import br.com.xlearning.questionario.entidade.Opcao;
+import br.com.xlearning.questionario.repository.OpcaoRepository;
 
 /**
  * @author Jesiel Viana

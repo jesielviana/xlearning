@@ -6,9 +6,12 @@
 package br.com.xlearning.questionario.dao;
 
 import java.util.List;
+
 import javax.persistence.Query;
+
 import br.com.xlearning.dao.util.GenericDAO;
 import br.com.xlearning.questionario.entidade.Questao;
+import br.com.xlearning.questionario.repository.QuestaoRepository;
 
 /**
  * @author Jesiel Viana Date: 02/10/2013

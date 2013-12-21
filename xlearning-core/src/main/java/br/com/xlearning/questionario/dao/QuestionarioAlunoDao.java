@@ -13,6 +13,7 @@ import br.com.xlearning.dao.util.GenericDAO;
 import br.com.xlearning.enumeracao.status.StatusQuestionarioAluno;
 import br.com.xlearning.questionario.entidade.Questionario;
 import br.com.xlearning.questionario.entidade.QuestionarioAluno;
+import br.com.xlearning.questionario.repository.QuestionarioAlunoRepository;
 import br.com.xlearning.usuario.entidade.Aluno;
 
 /**

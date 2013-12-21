@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.xlearning.disciplina.dao;
+package br.com.xlearning.disciplina.repository;
 
 import java.util.List;
 
