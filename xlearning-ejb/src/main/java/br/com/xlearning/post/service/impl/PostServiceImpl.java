@@ -10,14 +10,14 @@ import javax.inject.Inject;
 
 import br.com.xlearning.enumeracao.TipoPost;
 import br.com.xlearning.enumeracao.status.StatusPost;
-import br.com.xlearning.post.dao.PostRepository;
 import br.com.xlearning.post.entidade.Post;
+import br.com.xlearning.post.repository.PostRepository;
 import br.com.xlearning.post.service.PostService;
 
 @Stateless
 @LocalBean
 @Local(PostService.class)
-public class PostServiceBean implements PostService{
+public class PostServiceImpl implements PostService{
 	@Inject
 	private PostRepository postRepository;
 

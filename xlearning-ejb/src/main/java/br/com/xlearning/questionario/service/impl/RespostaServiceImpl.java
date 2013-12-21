@@ -12,9 +12,9 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 
-import br.com.xlearning.questionario.dao.RespostaRepository;
 import br.com.xlearning.questionario.entidade.Questao;
 import br.com.xlearning.questionario.entidade.Resposta;
+import br.com.xlearning.questionario.repository.RespostaRepository;
 import br.com.xlearning.questionario.service.RespostaService;
 import br.com.xlearning.usuario.entidade.Aluno;
 

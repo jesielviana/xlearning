@@ -13,10 +13,11 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
+
 import br.com.xlearning.alunodisciplina.service.AlunoDisciplinaService;
 import br.com.xlearning.constantes.NumeroParametro;
-import br.com.xlearning.disciplina.dao.AlunoDisciplinaRepository;
 import br.com.xlearning.disciplina.entidade.AlunoDisciplina;
+import br.com.xlearning.disciplina.repository.AlunoDisciplinaRepository;
 import br.com.xlearning.enumeracao.SituacaoAlunoDisciplina;
 import br.com.xlearning.enumeracao.StatusAprovacao;
 import br.com.xlearning.parametro.service.ParametroService;
@@ -27,7 +28,7 @@ import br.com.xlearning.parametro.service.ParametroService;
 @Stateless
 @LocalBean
 @Local(AlunoDisciplinaService.class)
-public class AlunoDisciplinaServiceBean implements AlunoDisciplinaService {
+public class AlunoDisciplinaServiceImpl implements AlunoDisciplinaService {
 
 	@Inject
 	private AlunoDisciplinaRepository alunoDisciplinaRepository;

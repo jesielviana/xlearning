@@ -12,8 +12,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 
-import br.com.xlearning.questionario.dao.OpcaoRepository;
 import br.com.xlearning.questionario.entidade.Opcao;
+import br.com.xlearning.questionario.repository.OpcaoRepository;
 import br.com.xlearning.questionario.service.OpcaoService;
 
 /**

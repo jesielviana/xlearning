@@ -14,8 +14,8 @@ import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 
 import br.com.xlearning.curso.entidade.Curso;
-import br.com.xlearning.turma.dao.TurmaRepository;
 import br.com.xlearning.turma.entidade.Turma;
+import br.com.xlearning.turma.repository.TurmaRepository;
 import br.com.xlearning.turma.service.TurmaService;
 
 /**
@@ -25,7 +25,7 @@ import br.com.xlearning.turma.service.TurmaService;
 @Stateless
 @LocalBean
 @Local(TurmaService.class)
-public class TurmaServiceBean implements TurmaService{
+public class TurmaServiceImpl implements TurmaService{
 
 	@Inject
 	private TurmaRepository turmaRepository;
