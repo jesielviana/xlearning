@@ -1,0 +1,20 @@
+<ui:composition template="/template/error.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+      <ui:define name="item-menu">
+        <h:form>
+        <h:link value="Administrativo" outcome="administrativo/index.xhtml" rendered="#{loginMB.userSession.admin}" />
+        <h:link value="Academico" outcome="academico/index.xhtml" rendered="#{loginMB.userSession.academico}" />
+        <h:commandLink id="logout" action="#{loginMB.logout}" value="Logout"></h:commandLink>
+        </h:form>
+    </ui:define>
+    
+    <ui:define name="logo-curso">
+    <h2>Você tentou acessar uma página que não tem permissão!</h2>
+    </ui:define>
+    
+</ui:composition>

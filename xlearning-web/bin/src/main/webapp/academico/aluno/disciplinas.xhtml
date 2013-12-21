@@ -1,0 +1,66 @@
+<ui:composition template="/template/threecolumn.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="avatar">
+        <div class="avatar">
+            <h:graphicImage value="/avatar/#{loginMB.userSession.avatar}" />
+                <h3><h:outputText value="Professor: #{loginMB.userSession.nome}" /></h3>
+         </div>   
+    </ui:define>
+    
+    <ui:define name="item-menu-top">
+    </ui:define>
+    
+  
+    <ui:define name="title-content">
+     <div id="form_style">
+    <h:form id="tit">
+    <h3>
+    <h:outputText id="title" value="#{alunoAcademicoMB.disciplina.nome}" /> 
+    </h3>
+    </h:form>
+    </div>
+    </ui:define>
+    
+    <!-- Inseir conteúdo principal na página de aluno -->
+    <ui:define name="conteudo">
+     <div id="form_style">
+        <h:form id="form-disciplina">
+            <h:panelGrid columns="1" id="cont">
+                <ui:repeat value="#{alunoAcademicoMB.conteudoAcademicos}" var="conteudo">
+                    <p:lightBox id="lightBox">
+                    <h:panelGrid rowClasses="teste" columns="3" rendered="#{conteudo.tipo != 3}">
+                        <h:outputLink value="#" ><h:outputText style="font-size: 1.2em;" value="#{conteudo.nome}" /></h:outputLink>
+                        <p:spacer width="12"/>
+                        <h:outputText value="Postado em: #{conteudo.dataInicial}" />
+                    </h:panelGrid>
+                        <f:facet name="inline">
+                        <p:media  player="pdf" value="/arquivo/#{conteudo.caminho}"  width="500px;" height="500px" 
+                         rendered="#{conteudo.tipo == 1}"/>
+                         <p:media value="/arquivo/#{conteudo.caminho}"  width="500px;" height="500px" 
+                         rendered="#{conteudo.tipo == 2}">
+                         <f:param name="autoPlay" value="false" />  
+                         </p:media>
+                         </f:facet>
+                    </p:lightBox>
+                    <h:panelGrid columns="5" rendered="#{conteudo.tipo == 3}">
+                    <h:outputText styleClass="titulo-conteudo" value="#{conteudo.nome}" />
+                     <p:spacer width="12"/>
+                     <h:outputText value="Postado em: #{conteudo.dataInicial}" />
+                      <p:spacer width="12"/>
+                 <p:commandButton id="downloadLink" value="Baixar" ajax="false" rendered="#{conteudo.tipo == 3}"
+                    onclick="PrimeFaces.monitorDownload(start, stop)" styleClass="download" icon="ui-icon-circle-arrow-s">
+                    <p:fileDownload value="#{conteudo.file}" />
+                </p:commandButton>
+               </h:panelGrid>
+                </ui:repeat>
+            </h:panelGrid>
+        </h:form>
+       </div>
+    </ui:define>
+    
+</ui:composition>

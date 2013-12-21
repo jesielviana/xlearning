@@ -1,0 +1,71 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+            <h:form>
+            <f:event listener="#{professorMB.inicializa}" type="preRenderView" />
+           <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />  
+            <h:panelGrid id="pgcadastro" columns="3">
+                 <p:outputLabel id="lmatricula" value="#{Message['label.usuario.matricula']}:" />
+                <h:inputText id="matricula" value="#{professorMB.professor.matricula}" readonly="true" />
+                <h:message for="matricula" errorStyle="color:red"/>
+            
+                <p:outputLabel id="lNome" value="#{Message['label.usuario.nome']}:" />
+                <h:inputText id="nome" value="#{professorMB.professor.nome}" />
+                <h:message for="nome" errorStyle="color:red"/>
+                
+                <p:outputLabel id="lcpf" value="#{Message['label.usuario.cpf']}:" />
+                <h:inputText id="cpf" value="#{professorMB.professor.cpf}" readonly="true" />
+                <h:message for="cpf" errorStyle="color:red"/>
+                
+                <p:outputLabel id="lemail" value="#{Message['label.usuario.email']}:" />
+                <h:inputText id="email" value="#{professorMB.professor.email}" />
+                <h:message for="email" errorStyle="color:red"/>
+                
+                <p:outputLabel id="lsenha" value="#{Message['label.usuario.senha']}:" />
+                <h:inputText id="senha" value="#{professorMB.senha}" />
+                <h:message for="senha" errorStyle="color:red"/>
+                
+                <p:outputLabel id="ltelefona" value="#{Message['label.usuario.telefone']}:" />
+                <p:inputMask id="telefone" value="#{professorMB.professor.telefone}" mask="(99) 9999-9999" />
+                <h:message for="telefone" errorStyle="color:red"/>
+                
+                <p:outputLabel id="lendereco" value="#{Message['label.usuario.endereco']}:" />
+                <h:inputText id="endereco" value="#{professorMB.professor.endereco}" />
+                <h:message for="endereco" errorStyle="color:red"/>
+                
+                <p:outputLabel id="lcidade" value="#{Message['label.usuario.cidade']}:" />
+                <h:inputText id="cidade" value="#{professorMB.professor.cidade}" />
+                <h:message for="cidade" errorStyle="color:red"/>
+                
+                <p:outputLabel id="luf" value="#{Message['label.usuario.uf']}:" />
+                <h:selectOneMenu style="width:100%" id="uf" value="#{professorMB.uf}">
+                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                <f:selectItems value="#{professorMB.ufItens}" var="uf" 
+                itemLabel="#{uf.valor}" itemValue="#{uf.valor}"/>
+                </h:selectOneMenu>
+                <h:message for="uf" errorStyle="color:red"/>
+                
+                <p:outputLabel  id="lStatus" value="#{Message['label.usuario.status']}:" />
+                <h:selectOneMenu style="width:100%" id="status" value="#{professorMB.statusUsuario}">
+                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                <f:selectItems value="#{professorMB.statusItens}" var="status"
+                itemLabel="#{status.valor}" itemValue="#{status.chave}" />
+                </h:selectOneMenu>  
+                <h:message for="nome" errorStyle="color:red"/>
+                
+                <h:outputLabel id="lAvatar" value="#{Message['label.usuario.avatar']}:" />
+                <p:fileUpload id="logo" value="#{professorMB.file}" mode="simple" update="alert" sizeLimit="10000000" 
+                    allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
+                <h:message for="logo" errorStyle="color:red"/>
+                    
+                <h:commandButton value="Alterar" action="#{professorMB.alterarProfessor}" />
+        </h:panelGrid>
+            </h:form>
+    </ui:define>
+
+</ui:composition>

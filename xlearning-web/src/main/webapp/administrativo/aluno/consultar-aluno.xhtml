@@ -1,0 +1,35 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+			<h3>Consulta de Aluno</h3>
+			<h:form id="formConsUsuario">
+			<f:event listener="#{alunoMB.inicializa}" type="preRenderView" />
+			<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />  
+				<h:panelGrid id="pgConsulta" columns="2">
+				
+				<h:outputLabel id="lMatricula" value="#{Message['label.usuario.matricula']}:" />
+				<h:inputText id="matricula" value="#{alunoMB.consultaUsuarioDTO.matricula}" />
+				
+				<h:outputLabel id="lCpf" value="#{Message['label.usuario.cpf']}:" />
+                <h:inputText id="cpf" value="#{alunoMB.consultaUsuarioDTO.cpf}" />
+				
+				<h:outputLabel id="lCurso" value="#{Message['label.usuario.curso']}:" />
+				<h:selectOneMenu id="curso" value="#{alunoMB.curso}" converter="#{cursoConverter}">
+				<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+				<f:selectItems value="#{alunoMB.cursos}" var="curso"
+				itemLabel="#{curso.nome}" itemValue="#{curso}" />
+				</h:selectOneMenu>	
+				</h:panelGrid>
+				<p:toolbar>  
+                        <p:toolbarGroup align="left"> 
+                        <p:commandButton value="Consultar" action="#{alunoMB.consultarAluno}" icon="ui-icon-search" /> 
+                        </p:toolbarGroup>
+                </p:toolbar>
+			</h:form>
+	</ui:define>
+</ui:composition>

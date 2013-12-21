@@ -1,0 +1,61 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<div id="form_style">
+			  <div class="cadastro">
+	   		<f:view>
+			<h3>Cadastro de Curso</h3>
+			<h:form id="formCadCurso" enctype="multipart/form-data">
+			<f:event listener="#{cursoMB.inicializaCadastro}" type="preRenderView" />
+			<p:messages id="messages" showDetail="false" globalOnly="true" autoUpdate="true" closable="true" />  
+				<h:panelGrid id="pgcadastro" columns="3">
+					<h:outputLabel id="lNome" value="#{Message['label.curso.nome']}:" />
+					<h:inputText id="nome" value="#{cursoMB.curso.nome}" required="true" 
+					requiredMessage="Informe o nome do curso" placeholder="curso" />
+					<h:message for="nome" errorStyle="color:red"/>
+					
+					<h:outputLabel id="Llogo" value="#{Message['label.curso.logo']}:" />
+					<p:fileUpload id="logo" value="#{cursoMB.file}" mode="simple" sizeLimit="10000000" 
+                    allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
+                    <h:message for="logo" errorStyle="color:red"/>
+					
+					<h:outputLabel id="lStatus" value="#{Message['label.usuario.status']}:" />
+                    <h:selectOneMenu style="width:100%" id="status" value="#{cursoMB.statusCurso}">
+                    <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                    <f:selectItems value="#{cursoMB.statusItens}" var="status"
+                    itemLabel="#{status.valor}" itemValue="#{status.chave}" />
+                    </h:selectOneMenu>  
+                    <h:message for="status" errorStyle="color:red"/>
+                    
+                    <h:outputLabel id="lCoordenador" value="#{Message['label.global.coordenador']}:" />
+                    <h:selectOneMenu style="width:100%" id="coordenador" value="#{cursoMB.matriculaCoordanador}">
+                    <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                    <f:selectItems value="#{cursoMB.coordenadores}" var="coordenador"
+                    itemLabel="#{coordenador.nome}" itemValue="#{coordenador.matricula}" />
+                    </h:selectOneMenu>  
+                    <h:message for="coordenador" errorStyle="color:red"/>
+                    
+                    <h:outputLabel id="ldescricao" value="#{Message['label.curso.descricao']}:" />
+                    <h:inputTextarea  id="descricao" value="#{cursoMB.curso.descricao}" />
+                    <h:message for="descricao" errorStyle="color:red"/>
+					
+			    </h:panelGrid>
+			    	<p:toolbar>  
+                        <p:toolbarGroup align="left">  
+						<p:commandButton value="Salvar" action="#{cursoMB.adicionarCurso}" ajax="false" icon="ui-icon-check" validateClient="true"  />
+						<p:commandButton value="Cancelar" action="#{cursoMB.cancelar}" immediate="true" ajax="false" icon="ui-icon-cancel"  />
+						<p:commandButton value="Limpar" type="reset" ajax="false" icon="ui-icon-clear"  />
+						</p:toolbarGroup>
+					</p:toolbar>
+        </h:form>
+       </f:view>
+       		</div>
+       </div>
+	</ui:define>
+	
+</ui:composition>

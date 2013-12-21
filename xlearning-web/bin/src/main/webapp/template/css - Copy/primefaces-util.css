@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+.ui-panelmenu .ui-panelmenu-header a {
+    display: block;
+    font-size: 1em;
+    padding: 0.1em 0.1em 0.1em 2em !important;
+}
+
+
+#content .ui-panelmenu-panel h3 {
+    color: #96A9B5;
+    font-size: 0.7em;
+}
+
+.ui-panelmenu .ui-menuitem-link {
+    border: 1px solid rgba(0, 0, 0, 0);
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 0.7em;
+    font-weight: 400;
+    line-height: 16px;
+    outline: medium none;
+    padding: 0.5em;
+    text-decoration: none;
+    width: 92%;
+}
+
+.ui-picklist td {
+	vertical-align: top;
+}
+
+.avatar{
+	background-color: #FFFFFF;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0 1px 3px #C3C3C3;
+    float: left;
+    height: 100%;
+    margin: 10px;
+    width: 50%;
+}

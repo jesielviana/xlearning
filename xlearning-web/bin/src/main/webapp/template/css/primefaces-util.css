@@ -1,0 +1,116 @@
+@CHARSET "UTF-8";
+
+.ui-panelmenu .ui-panelmenu-header a {
+	display: block;
+	font-size: 1.3em;
+	padding: 0.1em 0.1em 0.1em 2em !important;
+}
+
+#content .ui-panelmenu-panel h3 {
+	color: #000;
+	font-size: 0.7em;
+}
+
+.ui-panelmenu .ui-menuitem-link {
+	border: 1px solid rgba(0, 0, 0, 0);
+	cursor: pointer;
+	display: block;
+	float: left;
+	font-size: 1em;
+	font-weight: 400;
+	line-height: 16px;
+	outline: medium none;
+	padding: 0.5em;
+	text-decoration: none;
+	width: 92%;
+	color: #000;
+}
+
+.ui-menu {
+	width: 12.0em;
+}
+
+.ui-picklist td {
+	vertical-align: top;
+}
+
+.avatar {
+	background-color: #FFFFFF;
+	border-radius: 15px 15px 15px 15px;
+	box-shadow: 0 1px 3px #C3C3C3;
+	float: left;
+	height: 100%;
+	margin: 10px;
+	width: 50%;
+}
+
+.table-conteudo { ,
+	padding: 0 10px 0 10px;
+}
+
+.ui-cell-editor-input{
+	width: 100% !important;
+}
+.row-red {
+	background-color: #FFD073 !important;
+	background-image: none !important;
+	color: #000000 !important;
+}
+
+.row-green {
+	background-color: #67E667 !important;
+	background-image: none !important;
+	color: #000000 !important;
+}
+
+#skel-panels-pageWrapper {
+	backface-visibility: visible !important;
+}
+
+.icon-close {
+	width: 1.5em;
+	height: 1.5em;
+}
+
+.td-opcoes td {
+	padding: 0 0 0 0.2em;
+	border-bottom: 1px dashed #aaa;
+}
+
+.ui-inputfield {
+	color: #474F51 !important;
+	font-family: 'Yanone Kaffeesatz' !important;
+	font-size: 11pt !important;
+	font-weight: 300 !important;
+	line-height: 1.85em !important;
+	box-shadow: none;
+	padding: 0 2px;
+}
+
+.questao .ui-state-default,.questao .ui-widget-content 
+.questao .ui-state-default,.questao .ui-widget-header 
+.questao .ui-state-default {
+	background: none !important;
+	margin: 1px 0 !important;
+}
+
+.questao .ui-radiobutton {
+	margin: 0 0.7em 0 0;
+}
+
+.icon-resposta {
+	vertical-align: middle;
+	width: 20%;
+	padding: 0 0 0 10px
+}
+
+.opcoes {
+	vertical-align: middle;
+}
+.ui-state-disabled,
+.ui-widget-content
+ .ui-state-disabled,
+.ui-widget-header
+.ui-state-disabled{
+	opacity: 0.77 !important;
+}

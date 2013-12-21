@@ -1,0 +1,136 @@
+<ui:composition template="/template/twocolumn-academico.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<ui:define name="item-menu-top">
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h2>
+			<h:outputText value="#{questionarioMB.questionario.nome}" />
+		</h2>
+		<h:form id="form">
+			<p:messages id="messages" showDetail="false" 
+				autoUpdate="true" closable="true" />
+			<h:outputLabel value="Adicionar questão" />
+			<h:panelGrid id="pgQustao" columns="3">
+				<p:spacer />
+				<h:panelGroup>
+					<h:outputLabel value="Nº" />
+					<h:inputText value="#{questionarioMB.questao.numero}" size="2" required="true"
+					requiredMessage="Informe o número da questão" />
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:outputLabel value="Pergunta" />
+					<h:inputText id="questao" required="true" requiredMessage="Informe a pergunta"
+						value="#{questionarioMB.questao.pergunta}" size="40" />
+				</h:panelGroup>
+			</h:panelGrid>
+
+			<h:outputText value=" #{Message['label.questionario.opcoes']}" />
+			<h:panelGrid id="pgOpcao" columns="1">
+
+				<ui:repeat var="opcao" value="#{questionarioMB.opcoes}">
+
+					<h:panelGrid id="pgItem" columns="6" rowClasses="td-opcoes">
+						<p:spacer style="margin-left:3em;" />
+						<h:outputLabel value="#{Message['label.questionario.resposta']}" />
+						<h:inputText value="#{opcao.opcao}" />
+						<h:panelGroup>
+							<h:selectBooleanCheckbox value="#{opcao.opcaoCorreta}" />
+							<h:outputLabel value="#{Message['label.questionario.correta']}" />
+						</h:panelGroup>
+						<p:commandButton action="#{questionarioMB.removeOpcao(opcao)}"
+							immediate="true" update="pgItem" ajax="false"
+							icon="ui-icon-close" styleClass="icon-close" />
+					</h:panelGrid>
+				</ui:repeat>
+
+			</h:panelGrid>
+			<p:commandButton update="pgOpcao" action="#{questionarioMB.addOpcao}"
+				ajax="true" icon="ui-icon-plus" />
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="Salvar" update="questoes"
+						action="#{questionarioMB.adicionarQuestao}" ajax="false"
+						icon="ui-icon-check" validateClient="true" />
+					<p:commandButton value="Cancelar"
+						action="#{questionarioMB.cancelarQuestao}" immediate="true"
+						ajax="false" icon="ui-icon-cancel" />
+					<p:commandButton value="Limpar" type="reset" ajax="false"
+						icon="ui-icon-clear" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			</h:form>
+				<h:form id="form2">
+			<h2>Questões</h2>
+			<p:dataTable value="#{questionarioMB.questoes}" id="questoes"
+				var="questao" rendered="#{questionarioMB.questoes.size() > 0}"
+				paginator="#{questionarioMB.questoes.size() > 5}" editable="true"
+				rows="10"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+           {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" style="width: 100%" lazy="true">
+
+				<p:ajax event="rowEdit"
+					listener="#{questionarioMB.alterarQuestao}"
+					update=":form:messages" />
+				<p:ajax event="rowEditCancel"
+					listener="#{questionarioMB.cancelarAlterarQuestionario}"
+					update=":form:messages" />
+
+				<p:column>
+					<f:facet name="header">  
+                         Número  
+                        </f:facet>
+					<h:outputText value="#{questao.numero}" />
+				</p:column>
+				<p:column headerText="Pergunta">
+				   <p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{questao.pergunta}" />
+					</f:facet>
+					<f:facet name="input">
+                        <h:inputText value="#{questao.pergunta}" />
+                    </f:facet>
+                   </p:cellEditor>
+				</p:column>
+				<p:column headerText="Opção correta">
+					<p:cellEditor>
+						<f:facet name="output">
+							<ui:repeat var="opcao"
+								value="#{questionarioMB.converteOpcaosParaList(questao.opcoes)}">
+								<h:outputText value="#{opcao.opcao}"
+									rendered="#{opcao.opcaoCorreta}" />
+							</ui:repeat>
+						</f:facet>
+						<f:facet name="input">
+							<ui:repeat var="opcao"
+								value="#{questionarioMB.converteOpcaosParaList(questao.opcoes)}">
+								<h:inputText value="#{opcao.opcao}" />
+								<h:selectBooleanCheckbox value="#{opcao.opcaoCorreta}" />
+								<h:outputLabel value="#{Message['label.questionario.correta']}" />
+								<br />
+							</ui:repeat>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column>
+					<p:rowEditor />
+				</p:column>
+				<!-- 
+				<p:column>
+				<p:commandButton value="Excluir" update="questoes"
+                        action="#{questionarioMB.excluirQuestao(questao)}" ajax="false"
+                        icon="ui-icon-trash" />
+				</p:column>
+ 				-->
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

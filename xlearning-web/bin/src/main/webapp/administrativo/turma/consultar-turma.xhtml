@@ -1,0 +1,35 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+      <div id="form_style">
+            <h3>Consulta turma</h3>
+            <h:form id="formConsUsuario">
+            <f:event listener="#{turmaMB.inicializaConsulta}" type="preRenderView" />
+            <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />  
+                <h:panelGrid id="pgConsulta" columns="2">
+                
+                <h:outputLabel id="lCurso" value="#{Message['label.global.curso']}:" />
+                <h:selectOneMenu id="curso" value="#{turmaMB.idCurso}">
+                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                <f:selectItems value="#{turmaMB.cursos}" var="curso"
+                itemLabel="#{curso.nome}" itemValue="#{curso.idCurso}" />
+                </h:selectOneMenu>  
+                </h:panelGrid>
+                
+                
+                    <p:toolbar>  
+                        <p:toolbarGroup align="left">  
+                        <p:commandButton value="Consultar" action="#{turmaMB.consultarTurmaPorCurso}" ajax="false" icon="ui-icon-check" validateClient="true"  />
+                        <p:commandButton value="Cancelar" action="#{turmaMB.cancelar}" immediate="true" ajax="false" icon="ui-icon-cancel"  />
+                        </p:toolbarGroup>
+                    </p:toolbar>
+                
+            </h:form>
+    </div>
+    </ui:define>
+</ui:composition>

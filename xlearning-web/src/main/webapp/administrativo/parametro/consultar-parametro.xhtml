@@ -1,0 +1,64 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+     <div id="form_style">
+        <h3>Lista de parâmetros</h3>
+        <h:form id="form">
+        <f:event listener="#{parametroMB.inicializa}" type="preRenderView" />
+         <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />  
+            <p:dataTable value="#{parametroMB.parametros}" var="parametro" editable="true" 
+            rendered="#{!parametroMB.parametrosCadastrados}">
+                 <f:facet name="header">  
+                     Parâmetros
+                 </f:facet>  
+                   <p:ajax event="rowEdit" listener="#{parametroMB.alterarParametro}" update=":form:messages" />  
+                   <p:ajax event="rowEditCancel" listener="#{parametroMB.cancelaAlterarParametro}" update=":form:messages" />  
+                <p:column headerText="Número">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{parametro.codigo}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText value="#{parametro.codigo}" readonly="true" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Valor">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{parametro.valor}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText value="#{parametro.valor}" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                
+                <p:column headerText="Descrição">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{parametro.descricao}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:inputText value="#{parametro.descricao}" />
+                        </f:facet>
+                    </p:cellEditor>
+                 </p:column>
+
+                       
+               <p:column style="width:6%">  
+                    <p:rowEditor />  
+                </p:column>  
+
+            </p:dataTable>
+
+        </h:form>
+       </div>
+    </ui:define>
+</ui:composition>

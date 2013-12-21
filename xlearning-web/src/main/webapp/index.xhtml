@@ -1,0 +1,56 @@
+<ui:composition template="/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+		<ui:define name="login">
+			<div id="login">
+			 	<h:outputText value="Usuário ou senha incorretos!" rendered="#{param.error}" style="color: darkred"/>
+				<form action="j_spring_security_check" method="post">
+					<h:outputLabel value="Matrícula:" styleClass="login" /> <input type="text" name="j_username"  autofocus="autofocus"/>
+					<h:outputLabel value="Senha:" styleClass="login" /> <input type="password" name="j_password" />
+		            <input type="submit" value="Acessar" class="button-login" />
+		            <h:link value="Senha?" outcome="password.xhtml"/>
+				</form>
+			</div>
+		</ui:define>
+		
+		<ui:define name="destaques">
+			<ui:repeat var="post" value="#{homeMB.ultimosPostsPaginaInicial}">
+			<div class="destaques">
+			 <h:outputText value="#{post.conteudo}" />
+			</div>
+			</ui:repeat>
+		</ui:define>
+		
+		
+		<div id="banner">
+			<ui:define name="banner">
+				<p:graphicImage library="images" name="banner-ead.png" />
+			</ui:define>
+		</div>
+
+
+	<ui:define name="logo-curso">
+      <h:graphicImage value="/criaUsuarioAdministrador/" style="display: none;"/>
+	   <f:event listener="#{cursoMB.inicializaConsulta}" type="preRenderView" />
+		<ui:repeat value="#{cursoMB.cursos}" var="curso">  
+		<div class="item">
+		<h:form>
+		  <h:commandLink action="#{homeMB.paginaCurso}" value="" >
+		  <f:setPropertyActionListener value="#{curso}"
+                            target="#{homeMB.curso}" />
+		  <h:graphicImage value="/image/#{curso.nomeLogo}" />
+		  </h:commandLink>
+			<!-- Image must be 400px by 300px -->
+			<h3><h:outputText value="#{curso.nome}" /></h3>
+			<!--Title-->
+			<!--Category-->
+			</h:form>
+		</div>
+		</ui:repeat>
+		<!--/item-->
+	</ui:define>
+	</ui:composition>

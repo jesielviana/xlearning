@@ -1,0 +1,54 @@
+<ui:composition template="/template/twocolumn-academico.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+        <div id="form_style">
+            <h3>Posts</h3>
+            <h:form id="form">
+                <p:messages id="messages" showDetail="false" globalOnly="true"
+                    autoUpdate="true" closable="true" />
+                    
+                <p:dataTable value="#{postMB.posts}" var="post"
+                paginator="#{postMB.posts.size() > 5}" rows="10"
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+                    {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rowsPerPageTemplate="5,10,15" style="width: 100%" lazy="true">
+
+                <p:column>
+                    <f:facet name="header">#{Message['label.post.titulo']}</f:facet>
+                    <h:outputText value="#{post.titulo}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">#{Message['label.post.datainicial']}</f:facet>
+                    <h:outputText value="#{post.dataInicial}" />
+                </p:column>
+                   <p:column>
+                    <f:facet name="header">#{Message['label.post.datafinal']}</f:facet>
+                    <h:outputText value="#{post.dataFinal}" />
+                </p:column>
+                      <p:column>
+                         <f:facet name="header">#{Message['label.post.tipo']}</f:facet>
+                         <h:outputText value="#{post.tipoDescricao.valor}" />
+                    </p:column>
+                         <p:column>
+                         <f:facet name="header">#{Message['label.post.status']}</f:facet>
+                         <h:outputText value="#{post.statusDescricao.valor}" />
+                    </p:column>
+                <p:column style="width:4%">
+                    <p:commandButton id="selectButton" action="#{postMB.paginaAlterarPostProfessor}" 
+                    value="Alterar" title="alterar">
+                        <f:setPropertyActionListener value="#{post}"
+                            target="#{postMB.post}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,48 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+        <h3>Consulta de Curso</h3>
+        <h:form id="form">
+        <f:event listener="#{cursoMB.inicializaConsulta}" type="preRenderView" />
+        <p:messages id="messages" showDetail="false"  globalOnly="true" autoUpdate="true" closable="true" />  
+            <p:dataTable value="#{cursoMB.cursos}" var="curso" rendered="#{!cursoMB.cursosCadastrados}"
+                paginator="false" rows="10" id="dtcurso"
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+                    {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rowsPerPageTemplate="5,10,15" style="width: 100%" lazy="true">
+
+                <p:column>
+                    <f:facet name="header">#{Message['label.curso.nome']}</f:facet>
+                    <h:outputText value="#{curso.nome}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">#{Message['label.global.coordenador']}</f:facet>
+                    <h:outputText value="#{curso.coordenador.nome}" />
+                </p:column>
+                <p:column>
+                         <f:facet name="header">#{Message['label.global.status']}</f:facet>
+                         <h:outputText value="#{curso.statusDescricao.valor}" />
+                </p:column>
+                <p:column style="width:4%">
+                    <p:commandButton id="selectButton" action="#{cursoMB.paginaAlterarCurso}" 
+                    value="Editar" title="View" rendered="#{curso.coordenador.equals(loginMB.userSession) || loginMB.userSession.admin}">
+                        <f:setPropertyActionListener value="#{curso}" target="#{cursoMB.curso}" />
+                    </p:commandButton>
+                </p:column>
+                
+                 <p:column style="width:5%">
+                    <p:commandButton id="addTurma" action="#{turmaMB.paginaCadastrarTurma}" 
+                    value="Nova turma" title="View" rendered="#{curso.coordenador.equals(loginMB.userSession) || loginMB.userSession.admin}">
+                        <f:setPropertyActionListener value="#{curso}" target="#{turmaMB.curso}" />
+                    </p:commandButton>
+                </p:column>
+                
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

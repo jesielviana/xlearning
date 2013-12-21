@@ -1,0 +1,97 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<div id="form_style">
+		  <div class="cadastro">
+					<h3>Cadastro de Aluno</h3>
+					<h:form enctype="multipart/form-data" id="formCadastro">
+					<f:event listener="#{alunoMB.inicializa}" type="preRenderView" />
+					<p:messages id="messages" showDetail="false" globalOnly="true" autoUpdate="true" closable="true" />  
+					<h:panelGrid id="pgcadastro" columns="3">
+						<h:outputLabel id="lNome" value="#{Message['label.usuario.nome']}:" />
+						<h:inputText id="nome" value="#{alunoMB.aluno.nome}" placeholder="nome do aluno"  autofocus="true" />
+						<h:message for="nome" errorStyle="color:red"/>
+						
+						<h:outputLabel id="lcpf" value="#{Message['label.usuario.cpf']}:" />
+						<h:inputText id="cpf" value="#{alunoMB.aluno.cpf}" placeholder="cpf do aluno"  />
+						<h:message for="cpf" errorStyle="color:red"/>
+						
+						<h:outputLabel id="lemail" value="#{Message['label.usuario.email']}:" />
+						<h:inputText id="email" value="#{alunoMB.aluno.email}" />
+						<h:message for="email" errorStyle="color:red"/>
+						
+						<h:outputLabel id="lsenha" value="#{Message['label.usuario.senha']}:" />
+		                <h:inputText id="senha" value="#{alunoMB.senha}" />
+		                <h:message for="senha" errorStyle="color:red"/>
+						
+						<h:outputLabel id="ltelefona" value="#{Message['label.usuario.telefone']}:" />
+						<h:inputText id="telefone" value="#{alunoMB.aluno.telefone}" />
+						<h:message for="telefone" errorStyle="color:red"/>
+						
+						<h:outputLabel id="lendereco" value="#{Message['label.usuario.endereco']}:" />
+						<h:inputText id="endereco" value="#{alunoMB.aluno.endereco}" />
+						<h:message for="endereco" errorStyle="color:red"/>
+						
+						<h:outputLabel id="lcidade" value="#{Message['label.usuario.cidade']}:" />
+						<h:inputText id="cidade" value="#{alunoMB.aluno.cidade}" />
+						<h:message for="cidade" errorStyle="color:red"/>
+						
+						<h:outputLabel id="luf" value="#{Message['label.usuario.uf']}:" />
+						<h:selectOneMenu style="width:82%" id="uf" value="#{alunoMB.uf}">
+						<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+						<f:selectItems value="#{alunoMB.ufItens}" var="uf" 
+						itemLabel="#{uf.valor}" itemValue="#{uf.valor}"/>
+						</h:selectOneMenu>
+						<h:message for="uf" errorStyle="color:red"/>
+						
+						<h:outputLabel id="lStatus" value="#{Message['label.usuario.status']}:" />
+						<h:selectOneMenu style="width:82%" id="status" value="#{alunoMB.statusUsuario}">
+						<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+						<f:selectItems value="#{alunoMB.statusItens}" var="status"
+						itemLabel="#{status.valor}" itemValue="#{status.chave}" />
+						</h:selectOneMenu>	
+						<h:message for="status" errorStyle="color:red"/>
+						
+						<h:outputLabel id="lCurso" value="#{Message['label.usuario.curso']}:" />
+						<h:selectOneMenu style="width:82%"  id="curso" value="#{alunoMB.aluno.curso}" converter="#{cursoConverter}">
+						<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+						<f:selectItems value="#{alunoMB.cursos}" var="curso"
+						itemLabel="#{curso.nome}" itemValue="#{curso}"  />
+						<p:ajax update="turma"></p:ajax>
+						</h:selectOneMenu>	
+						<h:message for="curso" errorStyle="color:red"/>
+						
+						<h:outputLabel id="lTurma" value="#{Message['label.global.turma']}:" />
+		                <h:selectOneMenu style="width:82%" id="turma" value="#{alunoMB.idTurma}" immediate="true">
+		                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+		                <f:selectItems value="#{alunoMB.turmas}" var="turma"
+		                itemLabel="#{turma.nome}" itemValue="#{turma.idturma}"  />
+		                </h:selectOneMenu>  
+		                <h:message for="curso" errorStyle="color:red"/>
+						
+						<h:outputLabel id="lAvatar" value="#{Message['label.usuario.avatar']}:" />
+		                <p:fileUpload style="width:82%" id="logo" value="#{alunoMB.file}" mode="simple" update="alert" sizeLimit="10000000" 
+		                    allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>  
+		                <h:message for="logo" errorStyle="color:red"/>
+				
+							
+						
+					</h:panelGrid>
+					<p:toolbar>  
+                        <p:toolbarGroup align="left">  
+						<p:commandButton value="Salvar" action="#{alunoMB.adicionarAluno}" ajax="false" icon="ui-icon-check" validateClient="true"  />
+						<p:commandButton value="Cancelar" action="#{alunoMB.cancelar}" immediate="true" ajax="false" icon="ui-icon-cancel"  />
+						<p:commandButton value="Limpar" type="reset" ajax="false" icon="ui-icon-clear"  />
+						</p:toolbarGroup>
+					</p:toolbar>
+					</h:form>
+			     </div>
+			</div>		
+	</ui:define>
+
+</ui:composition>

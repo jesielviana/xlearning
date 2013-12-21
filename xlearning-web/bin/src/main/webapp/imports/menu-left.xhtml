@@ -1,0 +1,49 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:form>
+            <p:panelMenu>
+                <p:submenu label="Post">
+                    <p:menuitem value="Novo" url="/administrativo/post/novo-post.xhtml" icon="ui-icon-plus" />
+                    <p:menuitem value="Consultar" url="/administrativo/post/consultar-post.xhtml" icon="ui-icon-search" />
+                </p:submenu>
+                <p:submenu label="Curso">
+                    <p:menuitem value="Cadastrar" url="/administrativo/curso/cadastrar-curso.xhtml" icon="ui-icon-plus"
+                    rendered="#{loginMB.userSession.admin}" />
+                    <p:menuitem value="Consultar" url="/administrativo/curso/resultado-consulta-curso.xhtml" icon="ui-icon-search" />
+                </p:submenu>
+                <p:submenu label="Disciplina">
+                    <p:menuitem value="Cadastrar" url="/administrativo/disciplina/cadastro-disciplina.xhtml" icon="ui-icon-plus" />
+                    <p:menuitem value="Consultar" url="/administrativo/disciplina/consultar-disciplina.xhtml" icon="ui-icon-search" />
+                </p:submenu>
+                <p:submenu label="Turma">
+                     <p:menuitem value="Consultar" url="/administrativo/turma/consultar-turma.xhtml" icon="ui-icon-search" />
+                </p:submenu>
+                <p:submenu label="Aluno" >
+                    <p:menuitem value="Cadastrar" url="/administrativo/aluno/cadastrar-aluno.xhtml" icon="ui-icon-plus" />
+                    <p:menuitem value="Consultar" url="/administrativo/aluno/consultar-aluno.xhtml" icon="ui-icon-search" />
+                </p:submenu>
+                <p:submenu label="Professor">
+                    <p:menuitem value="Cadastrar" url="/administrativo/prof/cadastrar-professor.xhtml" icon="ui-icon-plus" />
+                    <p:menuitem value="Consultar" url="/administrativo/prof/consultar-professor.xhtml" icon="ui-icon-search" />
+                </p:submenu>
+                <p:submenu label="Coordenador">
+                    <p:menuitem value="Cadastrar" url="/administrativo/adm/cadastrar-coordenador.xhtml" icon="ui-icon-plus"
+                     rendered="#{loginMB.userSession.admin}" />
+                    <p:menuitem value="Consultar" url="/administrativo/adm/consultar-coordenador.xhtml" icon="ui-icon-search" />
+                </p:submenu>
+                <p:submenu label="Administrador"  rendered="#{loginMB.userSession.admin}">
+                    <p:menuitem value="Cadastrar" url="/administrativo/adm/cadastrar-adm.xhtml" icon="ui-icon-plus" />
+                    <p:menuitem value="Consultar" url="/administrativo/adm/consultar-adm.xhtml" icon="ui-icon-search" />
+                </p:submenu>
+                <p:submenu label="Parâmetro"  rendered="#{loginMB.userSession.admin}">
+                    <p:menuitem value="Cadastrar" url="/administrativo/parametro/cadastrar-parametro.xhtml" icon="ui-icon-plus" />
+                    <p:menuitem value="Consultar" url="/administrativo/parametro/consultar-parametro.xhtml" icon="ui-icon-search" />
+                </p:submenu>
+            </p:panelMenu>
+            </h:form>
+</ui:composition>

@@ -1,0 +1,59 @@
+<ui:composition template="/template/twocolumn-academico.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="item-menu-top">
+    </ui:define>
+    
+    <ui:define name="conteudo">
+      <div id="form_style">
+        <h3>Desempenho</h3>
+        <h:form id="form">
+         <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />  
+              <p:toolbar>  
+              <p:toolbarGroup align="left">  
+              <p:commandButton value="Voltar" action="#{questionarioMB.cancelarQuestao}" immediate="true" ajax="false" icon="ui-icon-cancel"  />
+              </p:toolbarGroup>
+             </p:toolbar>
+               <p:accordionPanel id="desempenho" value="#{questionarioMB.questionarios}" var="questionario" activeIndex="-1"> 
+                     <p:tab title="#{questionario.nome} criado em #{questionario.dataInicialFormatada}" titleStyle="text-align:left;">  
+                     <h:panelGrid columns="2" rowClasses="desempenho-alunos">
+                          <p:pieChart id="custom" value="#{questionarioMB.gerarGrafico(questionario)}"
+                   legendRows="3" legendPosition="nb" fill="false"
+                                showDataLabels="true" 
+                                seriesColors="A60000,008500,2288AA"
+                                style="width:300px;height:300px; top: -9px;" sliceMargin="3"
+                                diameter="150" /> 
+                                
+                <p:dataTable var="aluno" value="#{questionarioMB.todosAlunosCursandosDisciplina}">  
+                  <f:facet name="header">  
+                     Desempenho aluno x questionário
+                 </f:facet>  
+                <p:column headerText="Aluno">  
+                    <h:outputText value="#{aluno.nome}" />  
+                </p:column>  
+  
+                <p:column headerText="Questionário">  
+                    <h:outputText value="#{questionario.nome}" />  
+                </p:column>  
+  
+                <p:column headerText="Certas">  
+                    <h:outputText value="#{questionarioMB.qtdQuestoesCertas(questionario, aluno)}" />  
+                </p:column>  
+                  <p:column headerText="Erradas">  
+                    <h:outputText value="#{questionarioMB.qtdQuestoesErradas(questionario, aluno)}" />  
+                </p:column>  
+                  <p:column headerText="Sem responder">  
+                    <h:outputText value="#{questionarioMB.qtdQuestoesSemRespostas(questionario, aluno)}" />  
+                </p:column>  
+                </p:dataTable>
+                     </h:panelGrid>
+                     </p:tab>
+               </p:accordionPanel>
+        </h:form>
+       </div>
+    </ui:define>
+</ui:composition>

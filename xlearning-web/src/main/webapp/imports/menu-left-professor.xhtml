@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<section>
+		<h:form>
+			<p:panelMenu model="#{conteudoAcademicoMB.menuModel}" />
+		</h:form>
+	</section>
+
+	<section>
+		<h:form>
+			<p:panelMenu model="#{questionarioMB.menuModel}" />
+		</h:form>
+	</section>
+	<!-- Sidebar -->
+	<section>
+		<h:form>
+			<p:panelMenu model="#{professorAcademicoMB.menuModel}" />
+		</h:form>
+	</section>
+	
+	<section>
+        <h:form>
+          <p:panelMenu>
+                <p:submenu label="Post">
+                    <p:menuitem value="Novo" url="/academico/professor/post-professor.xhtml" icon="ui-icon-plus" />
+                    <p:menuitem value="Consultar" url="/academico/professor/consultar-post-professor.xhtml" icon="ui-icon-search" />
+                </p:submenu>
+          </p:panelMenu>
+        </h:form>
+    </section>
+
+</ui:composition>

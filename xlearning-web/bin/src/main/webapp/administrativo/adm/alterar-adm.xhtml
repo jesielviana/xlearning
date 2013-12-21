@@ -1,0 +1,65 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+            <h:form>
+           <p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />  
+            <h:panelGrid id="pgcadastro" columns="3">
+                 <p:outputLabel id="lmatricula" value="#{Message['label.usuario.matricula']}:" />
+                <h:inputText id="matricula" value="#{usuarioAdministrativoMB.usuarioAdm.matricula}" readonly="true" />
+                <h:message for="matricula" errorStyle="color:red"/>
+            
+                <p:outputLabel id="lNome" value="#{Message['label.usuario.nome']}:" />
+                <h:inputText id="nome" value="#{usuarioAdministrativoMB.usuarioAdm.nome}" />
+                <h:message for="nome" errorStyle="color:red"/>
+                
+                <p:outputLabel id="lcpf" value="#{Message['label.usuario.cpf']}:" />
+                <h:inputText id="cpf" value="#{usuarioAdministrativoMB.usuarioAdm.cpf}" readonly="true" />
+                <h:message for="cpf" errorStyle="color:red"/>
+                
+                <p:outputLabel id="lemail" value="#{Message['label.usuario.email']}:" />
+                <h:inputText id="email" value="#{usuarioAdministrativoMB.usuarioAdm.email}" />
+                <h:message for="email" errorStyle="color:red"/>
+                
+                <p:outputLabel id="lsenha" value="#{Message['label.usuario.senha']}:" />
+                <h:inputText id="senha" value="#{usuarioAdministrativoMB.senha}" />
+                <h:message for="senha" errorStyle="color:red"/>
+                
+                <p:outputLabel id="ltelefona" value="#{Message['label.usuario.telefone']}:" />
+                <p:inputMask id="telefone" value="#{usuarioAdministrativoMB.usuarioAdm.telefone}" mask="(99) 9999-9999" />
+                <h:message for="telefone" errorStyle="color:red"/>
+                
+                <p:outputLabel id="lendereco" value="#{Message['label.usuario.endereco']}:" />
+                <h:inputText id="endereco" value="#{usuarioAdministrativoMB.usuarioAdm.endereco}" />
+                <h:message for="endereco" errorStyle="color:red"/>
+                
+                <p:outputLabel id="lcidade" value="#{Message['label.usuario.cidade']}:" />
+                <h:inputText id="cidade" value="#{usuarioAdministrativoMB.usuarioAdm.cidade}" />
+                <h:message for="cidade" errorStyle="color:red"/>
+                
+                <p:outputLabel id="luf" value="#{Message['label.usuario.uf']}:" />
+                <h:selectOneMenu style="width:100%" id="uf" value="#{usuarioAdministrativoMB.uf}">
+                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                <f:selectItems value="#{usuarioAdministrativoMB.ufItens}" var="uf" 
+                itemLabel="#{uf.valor}" itemValue="#{uf.valor}"/>
+                </h:selectOneMenu>
+                <h:message for="uf" errorStyle="color:red"/>
+                
+                <p:outputLabel  id="lStatus" value="#{Message['label.usuario.status']}:" />
+                <h:selectOneMenu style="width:100%" id="status" value="#{usuarioAdministrativoMB.statusUsuario}">
+                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                <f:selectItems value="#{usuarioAdministrativoMB.statusItens}" var="status"
+                itemLabel="#{status.valor}" itemValue="#{status.chave}" />
+                </h:selectOneMenu>  
+                <h:message for="nome" errorStyle="color:red"/>
+                    
+                <h:commandButton value="Alterar" action="#{usuarioAdministrativoMB.alterarAdm}" />
+        </h:panelGrid>
+            </h:form>
+    </ui:define>
+
+</ui:composition>

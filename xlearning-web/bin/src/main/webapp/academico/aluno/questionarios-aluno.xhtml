@@ -1,0 +1,69 @@
+<ui:composition template="/template/threecolumn.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="avatar">
+        <div class="avatar">
+            <h:graphicImage value="/avatar/#{loginMB.userSession.avatar}" />
+            <h3>
+                <h:outputText value="Professor: #{loginMB.userSession.nome}" />
+            </h3>
+        </div>
+    </ui:define>
+
+    <ui:define name="item-menu-top">
+    </ui:define>
+
+   
+    <ui:define name="title-content">
+         <div id="form_style">
+        <h:form id="tit">
+            <h3>
+                <h:outputText id="title" value="#{alunoAcademicoMB.disciplina.nome}" />
+            </h3>
+        </h:form>
+       </div>
+    </ui:define>
+
+    <!-- Inseir conteúdo principal na página de aluno -->
+    <ui:define name="conteudo">
+      <div id="form_style">
+        <h:form id="form">
+            <p:growl id="growl" showDetail="true" sticky="true" autoUpdate="true"  />  
+            <p:accordionPanel id="teste" value="#{questionarioAlunoMB.questionarios}" var="questionario" activeIndex="-1">  
+                <p:tab title="#{questionario.nome}">  
+                    <div class="questao">
+                    <p:accordionPanel id="accQuestao" value="#{questionario.questoes}" var="questao" activeIndex="-1" multiple="true"> 
+                    <p:tab title="#{questao.numero} - #{questao.pergunta}">  
+                    
+                    <h:panelGrid columns="2" columnClasses="opcoes, icon-resposta">
+                     <p:selectOneRadio value="#{questao.opcaoMarcada}" layout="pageDirection" converter="#{opcaoConverter}"
+                      disabled="#{questionarioAlunoMB.isQuestaoAResponderPorALunoNaSessao(questao) ? false : true}">
+                        <f:selectItems value="#{questionarioAlunoMB.converteOpcaosParaList(questao.opcoes)}"
+                        var="opcao" itemLabel="#{opcao.opcao}" itemValue="#{opcao}" />
+                     </p:selectOneRadio>
+                         <p:graphicImage library="images" name="#{questionarioAlunoMB.icon(questao)}" 
+                         rendered="#{!questionarioAlunoMB.isQuestaoAResponderPorALunoNaSessao(questao)}" />
+                    </h:panelGrid>
+                      <p:commandButton value="Salvar" update=":form:teste" rendered="#{questionarioAlunoMB.isQuestaoAResponderPorALunoNaSessao(questao)}"
+                        action="#{questionarioAlunoMB.adicionaResposta(questao)}"  icon="ui-icon-check"  />
+                        
+                    </p:tab>
+                    </p:accordionPanel>
+                     <p:commandButton value="Finalizar"
+                        action="#{questionarioAlunoMB.finalizarQuestionario(questionario)}"  icon="ui-icon-close"  />
+                     <h:panelGrid columns="1">
+                 <p:pieChart id="custom" value="#{questionarioAlunoMB.getPieModelQuestionario(questionario)}" legendPosition="e" fill="false" showDataLabels="true"  
+                title="Avaliação do questionário" style="width:500px;height:300px" sliceMargin="5" diameter="150" /> 
+                </h:panelGrid>
+                   </div>
+                </p:tab>
+            </p:accordionPanel>
+        </h:form>
+     </div>
+    </ui:define>
+
+</ui:composition>

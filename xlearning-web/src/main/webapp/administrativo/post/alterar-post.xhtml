@@ -1,0 +1,69 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+        <div id="form_style">
+            <h3>Alterar post</h3>
+            <h:form id="form">
+                <p:messages id="messages" showDetail="false" globalOnly="true"
+                    autoUpdate="true" closable="true" />
+                <h:panelGrid id="pgcadastro" columns="3">
+
+                    <h:outputLabel id="ltitulo"
+                        value="#{Message['label.post.titulo']}:" />
+                    <h:inputText value="#{postMB.post.titulo}" id="titulo" />
+                    <h:message for="titulo" errorStyle="color:red" />
+
+                    <h:outputLabel id="lconteudo"
+                        value="#{Message['label.post.conteudo']}:" />
+                    <h:inputTextarea id="conteudo" value="#{postMB.post.conteudo}"
+                        style="width:100%;" />
+                    <h:message for="conteudo" errorStyle="color:red" />
+
+                    <h:outputLabel id="ltipo" value="#{Message['label.post.tipo']}:" />
+                    <h:selectOneMenu style="width:50%" id="tipo"
+                        value="#{postMB.tipoPost}">
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
+                        <f:selectItems value="#{postMB.tipoPostItens}" var="tipo"
+                            itemLabel="#{tipo.valor}" itemValue="#{tipo.chave}" />
+                    </h:selectOneMenu>
+                    <h:message for="tipo" errorStyle="color:red" />
+
+                    <h:outputLabel id="lstatus"
+                        value="#{Message['label.post.status']}:" />
+                    <h:selectOneMenu style="width:50%" id="status"
+                        value="#{postMB.statusPost}">
+                        <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true" />
+                        <f:selectItems value="#{postMB.statusPostItens}" var="status"
+                            itemLabel="#{status.valor}" itemValue="#{status.chave}" />
+                    </h:selectOneMenu>
+                    <h:message for="status" errorStyle="color:red" />
+                </h:panelGrid>
+
+                <h:outputLabel id="ldtinicial"
+                    value="#{Message['label.post.datainicial']}:" />
+                <p:calendar id="dtInicial" value="#{postMB.post.dataInicial}" />
+                <h:message for="dtInicial" errorStyle="color:red" />
+
+                <h:outputLabel id="ldtFinal"
+                    value="#{Message['label.post.datafinal']}:" />
+                <p:calendar id="dtFinal" value="#{postMB.post.dataFinal}" />
+                <h:message for="dtFinal" errorStyle="color:red" />
+                <p:toolbar>
+                    <p:toolbarGroup align="left">
+                        <p:commandButton value="Alterar" action="#{postMB.alterarPost}"
+                            ajax="false" icon="ui-icon-check" validateClient="true" />
+                        <p:commandButton value="Cancelar"
+                            action="#{postMB.cancelar}" immediate="true" ajax="false"
+                            icon="ui-icon-cancel" />
+                    </p:toolbarGroup>
+                </p:toolbar>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

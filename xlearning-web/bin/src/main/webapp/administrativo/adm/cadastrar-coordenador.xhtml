@@ -1,0 +1,72 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+    	<div id="form_style">
+    	 <div class="cadastro">
+				<h3>Cadastro de Coordenador</h3>
+            <h:form id="form">
+           <p:messages id="messages" showDetail="false" globalOnly="true" autoUpdate="true" closable="true" /> 
+            <h:panelGrid id="pgcadastro" columns="3">
+                <h:outputLabel id="lNome" value="#{Message['label.usuario.nome']}:" />
+                <h:inputText id="nome" value="#{coordenadorMB.coordenador.nome}" />
+                <h:message for="nome" errorStyle="color:red"/>
+                
+                <h:outputLabel id="lcpf" value="#{Message['label.usuario.cpf']}:" />
+                <h:inputText id="cpf" value="#{coordenadorMB.coordenador.cpf}"  />
+                <h:message for="cpf" errorStyle="color:red"/>
+                
+                <h:outputLabel id="lemail" value="#{Message['label.usuario.email']}:" />
+                <h:inputText id="email" value="#{coordenadorMB.coordenador.email}" />
+                <h:message for="email" errorStyle="color:red"/>
+                
+                <h:outputLabel id="lsenha" value="#{Message['label.usuario.senha']}:" />
+                    <h:inputText id="senha" value="#{coordenadorMB.senha}" />
+                    <h:message for="senha" errorStyle="color:red"/>
+                
+                <h:outputLabel id="ltelefona" value="#{Message['label.usuario.telefone']}:" />
+                <h:inputText id="telefone" value="#{coordenadorMB.coordenador.telefone}" />
+                <h:message for="telefone" errorStyle="color:red"/>
+                
+                <h:outputLabel id="lendereco" value="#{Message['label.usuario.endereco']}:" />
+                <h:inputText id="endereco" value="#{coordenadorMB.coordenador.endereco}" />
+                <h:message for="endereco" errorStyle="color:red"/>
+                
+                <h:outputLabel id="lcidade" value="#{Message['label.usuario.cidade']}:" />
+                <h:inputText id="cidade" value="#{coordenadorMB.coordenador.cidade}" />
+                <h:message for="cidade" errorStyle="color:red"/>
+                
+                <h:outputLabel id="luf" value="#{Message['label.usuario.uf']}:" />
+                <h:selectOneMenu style="width:100%" id="uf" value="#{coordenadorMB.uf}">
+                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                <f:selectItems value="#{coordenadorMB.ufItens}" var="uf" 
+                itemLabel="#{uf.valor}" itemValue="#{uf.valor}"/>
+                </h:selectOneMenu>
+                <h:message for="uf" errorStyle="color:red"/>
+                
+                <h:outputLabel id="lStatus" value="#{Message['label.usuario.status']}:" />
+                <h:selectOneMenu style="width:100%" id="status" value="#{coordenadorMB.statusUsuario}">
+                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                <f:selectItems value="#{coordenadorMB.statusItens}" var="status"
+                itemLabel="#{status.valor}" itemValue="#{status.chave}" />
+                </h:selectOneMenu>  
+                <h:message for="nome" errorStyle="color:red"/>
+        
+        </h:panelGrid>
+        	<p:toolbar>  
+                <p:toolbarGroup align="left">  
+				<p:commandButton value="Salvar" action="#{coordenadorMB.adcionarCoordenador}" ajax="false" icon="ui-icon-check" validateClient="true"  />
+				<p:commandButton value="Cancelar" action="#{coordenadorMB.cancelar}" immediate="true" ajax="false" icon="ui-icon-cancel"  />
+				<p:commandButton value="Limpar" type="reset" ajax="false" icon="ui-icon-clear"  />
+				</p:toolbarGroup>
+			</p:toolbar>
+            </h:form>
+            </div>
+         </div>
+    </ui:define>
+
+</ui:composition>

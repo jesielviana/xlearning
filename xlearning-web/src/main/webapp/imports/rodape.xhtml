@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<footer id="footer" class="container">
+		<div class="row">
+			<div class="8u">
+
+				<!-- Links -->
+				<section>
+					<div>
+						<div class="row">
+							<div class="3u">
+								<h2>Cursos</h2>
+								<ul class="link-list last-child">
+								<h:form id="menus-curso">
+									<ui:repeat var="curso" value="#{homeMB.todosCursos}">
+									   <li> 
+									     <h:commandLink action="#{homeMB.paginaCurso}" value="#{curso.nome}" >
+                                            <f:setPropertyActionListener value="#{curso}"  target="#{homeMB.curso}" />
+                                        </h:commandLink>
+								       </li>
+									</ui:repeat>
+								</h:form>
+								</ul>
+							</div>
+							<div class="3u">
+								<h2>Posts</h2>
+									<ul class="link-list last-child">
+									<h:form id="menus-post">
+										<ui:repeat var="post" value="#{homeMB.ultimosPostsRodape}">
+										<li> 
+									     	<h:commandLink action="#{homeMB.paginaNoticias}" value="#{post.titulo}" >
+                                           	 <f:setPropertyActionListener value="#{post}"  target="#{homeMB.post}" />
+                                        	</h:commandLink>
+								       </li>
+										</ui:repeat>
+									</h:form>
+									</ul>
+							</div>
+							
+							<div class="3u">
+                                <h2>Menus</h2>
+                                    <ul class="link-list last-child">
+                                            <li> <h:link value="Home" outcome="index.xhtml"/></li>
+                                    </ul>
+                            </div>
+
+						</div>
+					</div>
+				</section>
+
+			</div>
+			<div class="4u">
+				<!-- facebook -->
+				<div class="fb-like" data-href="https://www.facebook.com/xlearning.tcc" data-width="100" data-layout="standard" 
+				data-action="like" data-show-faces="true" data-share="true"></div>
+				
+				<!-- google plus -->
+				<div class="g-person" data-layout="landscape" data-showcoverphoto="true"   data-width="200"  
+				data-href="https://plus.google.com/u/0/115543140298557381327"></div>
+
+			</div>
+		</div>
+	</footer>
+
+
+</ui:composition>

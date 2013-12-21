@@ -1,0 +1,21 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+     <ui:define name="item-menu-top">
+     </ui:define>
+	
+	<ui:define name="conteudo">
+		 <h:outputText value="Bem vindo #{loginMB.userSession.nome}" />		
+		<p>
+			aqui você controla todo o seu ambiente de aprendizando a distância!
+		</p>
+		
+	<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" globalOnly="true"/>  
+	</ui:define>
+
+</ui:composition>

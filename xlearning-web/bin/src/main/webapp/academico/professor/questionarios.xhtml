@@ -1,0 +1,143 @@
+<ui:composition template="/template/twocolumn-academico.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="item-menu-top">
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<div id="form_style">
+			<h3>Questionário</h3>
+			<h:form id="form">
+				<p:messages id="messages" globalOnly="true" showDetail="false" autoUpdate="true"
+					closable="true" />
+				<p:toolbar>
+					<p:toolbarGroup align="left">
+						<p:commandButton value="Novo" update="novoQuestionario"
+							action="#{questionarioMB.novoQuestionario}" ajax="false"
+							icon="ui-icon-plus" />
+						<p:commandButton value="Cancelar"
+							action="#{questionarioMB.cancelarQuestionario}" immediate="true"
+							ajax="false" icon="ui-icon-cancel" />
+					</p:toolbarGroup>
+				</p:toolbar>
+				<p:separator></p:separator>
+				<h:panelGrid rendered="#{questionarioMB.novo}" id="novoQuestionario"
+					columns="3">
+					<h:outputLabel value="#{Message['label.global.nome']}" />
+					<h:inputText id="nome" required="true" requiredMessage="Informe o nome do questionário"
+					 value="#{questionarioMB.questionario.nome}" />
+					<h:message for="nome" errorStyle="color:red" />
+
+					<h:outputLabel id="lDtInicial"
+						value="#{Message['label.conteudo.datainicial']}:" />
+					<p:calendar value="#{questionarioMB.questionario.dataInicial}" required="true" 
+					requiredMessage="Informe a data de inicial"
+						id="dtInicial" effect="slideDown" />
+					<h:message for="dtInicial" errorStyle="color:red" />
+
+					<h:outputLabel id="lDtFinal"
+						value="#{Message['label.conteudo.datafinal']}:" />
+					<p:calendar value="#{questionarioMB.questionario.dataFinal}" required="true" 
+                    requiredMessage="Informe a data de final"
+						id="dtFinal" effect="slideDown" />
+					<h:message for="dtFinal" errorStyle="color:red" />
+
+					<p:commandButton value="Salvar" update="dtQuestionarios"
+						action="#{questionarioMB.adicionarQuestionario}" ajax="false"
+						icon="ui-icon-check" />
+				</h:panelGrid>
+				
+    <div class="separador"></div>
+    
+				<p:dataTable id="dtQuestionarios"
+					value="#{questionarioMB.questionarios}" var="questionario"
+					editable="true" emptyMessage="nenhum registro encontrado"
+					rendered="#{questionarioMB.questionarios.size() > 0}"
+					paginator="#{questionarioMB.questionarios.size() > 5}" rows="10"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+           {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15" style="width: 100%" lazy="true">
+
+					<p:ajax event="rowEdit"
+						listener="#{questionarioMB.alterarQuestionario}"
+						update=":form:messages" />
+					<p:ajax event="rowEditCancel"
+						listener="#{questionarioMB.cancelarAlterarQuestionario}"
+						update=":form:messages" />
+
+					<p:column headerText="Nome">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{questionario.nome}" />
+							</f:facet>
+							<f:facet name="input">
+								<h:inputText value="#{questionario.nome}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Data inicial">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{questionario.dataInicialFormatada}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar value="#{questionario.dataInicial}" size="7"/>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Data final">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{questionario.dataFinalFormatada}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar value="#{questionario.dataFinal}" size="7"/>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Nº de questões">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{questionario.questoes.size()}" />
+							</f:facet>
+							<f:facet name="input">
+								<h:inputText value="#{questionario.questoes.size()}"
+									readonly="true" size="5"/>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column style="width:5%">
+						<p:rowEditor />
+					</p:column>
+
+					<p:column style="width:4%">
+						<p:commandButton id="add"
+							action="#{questionarioMB.paginaAdicionarQuestao}"
+							value="Questões">
+							<f:setPropertyActionListener value="#{questionario}"
+								target="#{questionarioMB.questionario}" />
+						</p:commandButton>
+					</p:column>
+					<p:column style="width:4%">
+						<p:commandButton value="Excluir" update="dtQuestionarios"
+							ajax="false"
+							action="#{questionarioMB.excluirQuestionario(questionario)}" />
+					</p:column>
+					<p:column headerText="Relatório">
+						<h:link value="relatório" outcome="desempenho.xhtml" />
+					</p:column>
+
+				</p:dataTable>
+
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

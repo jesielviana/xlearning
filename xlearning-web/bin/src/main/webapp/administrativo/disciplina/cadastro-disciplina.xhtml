@@ -1,0 +1,55 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+		<div id="form_style">
+			 <div class="cadastro">
+			<h3>Cadastro de Disciplina</h3>
+			<h:form>
+				<f:event listener="#{disciplinaMB.inicializaAlteracao}" type="preRenderView" />
+				<p:messages id="messages" showDetail="false"  globalOnly="true" autoUpdate="true" closable="true" />  
+				<h:panelGrid id="pgcadastro" columns="2">
+				
+					<h:outputLabel id="lNome" for="nome" value="#{Message['label.disciplina.nome']}:" />
+					<h:inputText id="nome" value="#{disciplinaMB.disciplina.nome}" placeholder="Disciplina" />
+                    
+                    <h:outputLabel id="lStatus" value="#{Message['label.usuario.status']}:" />
+                    <h:selectOneMenu style="width:100%" id="status" value="#{disciplinaMB.statusDisciplina}">
+                    <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                    <f:selectItems value="#{disciplinaMB.statusItens}" var="status"
+                    itemLabel="#{status.valor}" itemValue="#{status.chave}" />
+                    </h:selectOneMenu>  
+
+                    <h:outputLabel id="lProfessor" for="professor" value="#{Message['label.global.professor']}:" />
+                    <h:selectOneMenu style="width:100%" value="#{disciplinaMB.matriculaProfessor}" id="professor" >
+                    <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                        <f:selectItems value="#{disciplinaMB.professores}" var="professor"
+                           itemLabel="#{professor.nome}" itemValue="#{professor.matricula}"  />
+                    </h:selectOneMenu>
+
+					<h:outputLabel id="lCurso" for="curso" value="#{Message['label.disciplina.curso']}:" />
+					<h:selectOneMenu style="width:100%;" value="#{disciplinaMB.disciplina.curso}" 
+					 id="curso" converter="#{cursoConverter}">
+					<f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+						<f:selectItems value="#{disciplinaMB.cursos}" var="curso"
+							itemLabel="#{curso.nome}"  itemValue="#{curso}" />
+					</h:selectOneMenu>
+
+				</h:panelGrid>
+				<p:toolbar>  
+                        <p:toolbarGroup align="left">  
+						<p:commandButton value="Salvar" action="#{disciplinaMB.adicionarDisciplina}" ajax="false" icon="ui-icon-check" validateClient="true"  />
+						<p:commandButton value="Cancelar" action="#{disciplinaMB.cancelar}" immediate="true" ajax="false" icon="ui-icon-cancel"  />
+						<p:commandButton value="Limpar" type="reset" ajax="false" icon="ui-icon-clear"  />
+						</p:toolbarGroup>
+					</p:toolbar>
+			</h:form>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>

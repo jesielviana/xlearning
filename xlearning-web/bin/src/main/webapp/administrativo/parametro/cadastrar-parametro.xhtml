@@ -1,0 +1,38 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+        <div id="form_style">
+         <div class="cadastro">
+            <h3>Cadastro de Parâmetro</h3>
+            <h:form>
+                <p:messages id="messages" showDetail="false"  globalOnly="true" autoUpdate="true" closable="true" />  
+                <h:panelGrid id="pgcadastro" columns="2">
+                
+                    <h:outputLabel id="lnumero" for="numero" value="#{Message['label.parametro.numero']}:" />
+                    <h:inputText id="numero" value="#{parametroMB.parametro.codigo}" />
+                    
+                    <h:outputLabel id="lvalor" for="valor" value="#{Message['label.parametro.valor']}:" />
+                    <h:inputText id="nome" value="#{parametroMB.parametro.valor}" />
+                    
+                    <h:outputLabel id="ldescricao" for="descricao" value="#{Message['label.parametro.descricao']}:" />
+                    <h:inputText id="descricao" value="#{parametroMB.parametro.descricao}" />
+                    
+                </h:panelGrid>
+                <p:toolbar>  
+                   <p:toolbarGroup align="left">  
+                      <p:commandButton value="Salvar" action="#{parametroMB.adcionaParametro}" ajax="false" icon="ui-icon-check" validateClient="true"  />
+                      <p:commandButton value="Cancelar" action="#{parametroMB.cancelar}" immediate="true" ajax="false" icon="ui-icon-cancel"  />
+                      <p:commandButton value="Limpar" type="reset" ajax="false" icon="ui-icon-clear"  />
+                  </p:toolbarGroup>
+               </p:toolbar>
+            </h:form>
+            </div>
+          </div>
+    </ui:define>
+
+</ui:composition>

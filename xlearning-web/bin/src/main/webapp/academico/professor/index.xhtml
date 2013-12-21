@@ -1,0 +1,35 @@
+<ui:composition template="/template/twocolumn-academico.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="avatar">
+		<div class="avatar">
+			<h:graphicImage value="/avatar/#{loginMB.userSession.avatar}" />
+			<h3>
+				<h:outputText value="Professor: #{loginMB.userSession.nome}" />
+			</h3>
+		</div>
+	</ui:define>
+
+	<ui:define name="item-menu-top">
+	</ui:define>
+
+	<ui:define name="conteudo">
+	 <div id="form_style">
+		<p:messages id="messages" showDetail="false" globalOnly="true"
+			autoUpdate="true" closable="true" />
+		<h:outputText value="Bem vindo Professor #{loginMB.userSession.nome}" />
+		<p>Aqui você controla todo o seu ambiente de ensino a
+			distância!</p>
+              <h3>Notícias</h3>
+                   <ul class="link-list last-child">
+                          <ui:repeat var="post" value="#{homeMB.ultimosPostsParaProfessores}">
+                              <li><h:link value="#{post.titulo}" /></li>
+                          </ui:repeat>
+                   </ul>
+    </div>
+	</ui:define>
+</ui:composition>

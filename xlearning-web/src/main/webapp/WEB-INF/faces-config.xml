@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+ <!-- Inicio Navegação -->
+ <navigation-rule>
+  <navigation-case>
+   <from-outcome>home</from-outcome>
+   <to-view-id>/index.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>resultadoConsultaAluno</from-outcome>
+   <to-view-id>/administrativo/aluno/resultado-consulta-aluno.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>administrativo</from-outcome>
+   <to-view-id>/administrativo/index.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cadastrar-turma</from-outcome>
+   <to-view-id>/administrativo/turma/cadastrar-turma.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>professor</from-outcome>
+   <to-view-id>/academico/professor/index.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>resultado-consulta-curso</from-outcome>
+   <to-view-id>/administrativo/curso/resultado-consulta-curso.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <!-- Fim Navegação -->
+ <application>
+  <locale-config>
+   <default-locale>pt_BR</default-locale>
+  </locale-config>
+  <resource-bundle>
+   <base-name>Messages</base-name>
+   <var>Message</var>
+  </resource-bundle>
+ </application>
+ <factory>
+  <render-kit-factory>org.omnifaces.renderkit.Html5RenderKitFactory</render-kit-factory>
+ </factory>
+</faces-config>

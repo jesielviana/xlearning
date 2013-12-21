@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Xlearning</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/template/images/favicon.ico"/>
+	<script src="#{facesContext.externalContext.requestContextPath}/template/js/config.js"></script>
+	<script src="#{facesContext.externalContext.requestContextPath}/template/js/skel.min.js"></script>
+	<script src="#{facesContext.externalContext.requestContextPath}/template/js/skel-panels.min.js"></script>
+	<link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/template/css/primefaces-util.css" />
+	<link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/template/css/forms.css" />
+	<noscript>
+		<link rel="stylesheet"
+			href="#{facesContext.externalContext.requestContextPath}/template/css/skel-noscript.css" />
+		<link rel="stylesheet"
+			href="#{facesContext.externalContext.requestContextPath}/template/css/style.css" />
+		<link rel="stylesheet"
+			href="#{facesContext.externalContext.requestContextPath}/template/css/style-desktop.css" />
+	</noscript>
+	<!--[if lte IE 9]><link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/template/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><script src="#{facesContext.externalContext.requestContextPath}/template/js/html5shiv.js"></script><![endif]-->
+	<script type="text/javascript">  
+		function start() {  
+		    PF('statusDialog').show();  
+		}  
+  
+		function stop() {  
+		    PF('statusDialog').hide();  
+		}  
+        </script>
+</h:head>
+<h:body class="subpage">
+
+	<!-- Header -->
+	<div id="header-wrapper">
+		<header id="header" class="container">
+			<div class="row">
+				<div class="12u">
+
+					<!-- Logo -->
+					<h1>
+						<a href="#" id="logo">Halcyonic</a>
+					</h1>
+
+					<!-- Nav -->
+					<nav id="nav">
+						<h:form>
+							<ui:insert name="item-menu-top">
+							</ui:insert>
+							<h:commandLink id="logout" action="#{loginMB.logout}"
+								value="Logout"></h:commandLink>
+						</h:form>
+					</nav>
+
+				</div>
+			</div>
+		</header>
+	</div>
+
+	<!-- Content -->
+	<div id="content-wrapper">
+		<div id="content">
+			<div class="container">
+				<div class="row">
+					<div class="3u">
+						<!-- Left Sidebar -->
+						<ui:include src="/imports/menu-left-aluno.xhtml"></ui:include>
+					</div>
+					<div class="6u skel-cell-mainContent">
+
+						<!-- Main Content -->
+						<section>
+							<header>
+
+								<ui:insert name="title-content"></ui:insert>
+							</header>
+							<ui:insert name="conteudo">
+
+							</ui:insert>
+						</section>
+
+					</div>
+					<div class="3u">
+
+						<!-- Right Sidebar -->
+						<section>
+							<p:pieChart id="custom" value="#{alunoAcademicoMB.pieModel}"
+								legendRows="2" legendPosition="nb" fill="false"
+								showDataLabels="true" title="Gráfico disciplinas"
+								seriesColors="008500,2288AA,FFE800,A60000"
+								style="width:260px;height:450px; top: 0px;" sliceMargin="3"
+								diameter="200" />
+						</section>
+						<section>
+							<header>
+								<h2>Notícias</h2>
+							</header>
+							<ul class="link-list">
+							<ui:repeat var="post" value="#{homeMB.ultimosPostsParaAlunos}">
+                                <li><h:link value="#{post.titulo}" /></li>
+                            </ui:repeat>
+							</ul>
+						</section>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<div id="footer-wrapper">
+		<ui:include src="/imports/rodape.xhtml"></ui:include>
+	</div>
+
+	<!-- Copyright -->
+	<div id="copyright">
+	Xlearning. Todos os direitos reservados. | TCC BSI 2013
+	</div>
+
+</h:body>
+</html>

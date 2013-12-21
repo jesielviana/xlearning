@@ -1,0 +1,84 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+            	<div id="form_style">
+				<h3>Coordenadores</h3>
+        <h:form id="form">
+            <h:messages style="color:red" />
+
+            <p:dataTable value="#{coordenadorMB.coordenadores}" var="coordenador"
+                paginator="false" rows="10"
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks}
+                    {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rowsPerPageTemplate="5,10,15" style="width: 100%" lazy="true">
+
+                <p:column>
+                    <f:facet name="header">#{Message['label.usuario.matricula']}</f:facet>
+                    <h:outputText value="#{coordenador.matricula}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">#{Message['label.usuario.nome']}</f:facet>
+                    <h:outputText value="#{coordenador.nome}" />
+                </p:column>
+                      <p:column>
+                         <f:facet name="header">#{Message['label.usuario.email']}</f:facet>
+                         <h:outputText value="#{coordenador.email}" />
+                    </p:column>
+                         <p:column>
+                         <f:facet name="header">#{Message['label.global.curso']}</f:facet>
+                         <ui:repeat var="curso" value="#{coordenador.cursos}">
+                         <h:outputText value="#{curso.nome}" />
+                         </ui:repeat>
+                    </p:column>
+               <p:column>
+                    <f:facet name="header">Dados</f:facet>
+                    <p:commandButton id="selectButton" update=":form:display"
+                        oncomplete="PF('carDialog').show()" icon="ui-icon-search"
+                        title="View">
+                        <f:setPropertyActionListener value="#{coordenador}"
+                            target="#{coordenadorMB.coordenador}" />
+                    </p:commandButton>
+                </p:column>
+
+                <p:column style="width:4%">
+                    <h:commandButton id="alterButton" action="#{coordenadorMB.paginaAlterarCoordenador}" 
+                    value="Editar" title="Editar">
+                        <f:setPropertyActionListener value="#{coordenador}"
+                            target="#{coordenadorMB.coordenador}" />
+                    </h:commandButton>
+                </p:column>
+            </p:dataTable>
+            
+             <p:dialog header="#{coordenadorMB.coordenador.nome}" widgetVar="carDialog" width="300" resizable="true" id="carDlg"  
+                showEffect="fade" hideEffect="explode" modal="true">  
+  
+        <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">  
+            <h:outputText value="CPF:" />  
+            <h:outputText value="#{coordenadorMB.coordenador.cpf}" style="font-weight:bold"/>  
+            
+               <h:outputText value="Status:" />  
+            <h:outputText value="#{coordenadorMB.coordenador.statusUsuario.valor}" style="font-weight:bold"/>  
+  
+            <h:outputText value="Telefone:" />  
+            <h:outputText value="#{coordenadorMB.coordenador.telefone}" style="font-weight:bold"/>  
+            
+            <h:outputText value="Edereço:" />  
+            <h:outputText value="#{coordenadorMB.coordenador.endereco}" style="font-weight:bold"/>  
+            
+            <h:outputText value="Cidade:" />  
+            <h:outputText value="#{coordenadorMB.coordenador.cidade}" style="font-weight:bold"/>  
+            
+            <h:outputText value="UF:" />  
+            <h:outputText value="#{coordenadorMB.coordenador.uf}" style="font-weight:bold"/>  
+        </h:panelGrid>  
+  
+    </p:dialog>  
+        </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

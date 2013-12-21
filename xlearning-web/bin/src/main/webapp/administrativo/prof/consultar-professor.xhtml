@@ -1,0 +1,48 @@
+<ui:composition template="/template/twocolumn2.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="conteudo">
+	   <div id="form_style">
+			<h3>Consulta de Professor</h3>
+			<h:form id="formConsUsuario">
+			<f:event listener="#{professorMB.inicializa}" type="preRenderView" />
+			<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />  
+				<h:panelGrid id="pgConsulta" columns="3">
+				
+				<p:outputLabel id="lMatricula" value="#{Message['label.usuario.matricula']}:" />
+				<h:inputText id="matricula" value="#{professorMB.consultaUsuarioDTO.matricula}" />
+				<h:message for="matricula" errorStyle="color:red"/>
+				
+				<p:outputLabel  id="lStatus" value="#{Message['label.usuario.status']}:" />
+                <h:selectOneMenu style="width:100%" id="status" value="#{professorMB.statusUsuario}">
+                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                <f:selectItems value="#{professorMB.statusItens}" var="status"
+                 itemLabel="#{status.valor}" itemValue="#{status.chave}" />
+                </h:selectOneMenu>  
+                 <h:message for="nome" errorStyle="color:red"/>
+				   
+		 		<p:outputLabel id="lDiciplina" value="#{Message['label.usuario.disciplina']}:" />
+                <h:selectOneMenu style="width:100%" id="disciplina" value="#{professorMB.codigoDisciplina}" immediate="true">
+                <f:selectItem itemLabel="-- Selecione --" noSelectionOption="true"/>
+                <f:selectItems value="#{professorMB.disciplinas}" var="disciplina"
+                itemLabel="#{disciplina.nome}" itemValue="#{disciplina.idDisciplina}"  />
+                </h:selectOneMenu>
+                <h:message for="disciplina" errorStyle="color:red"/>
+				</h:panelGrid>
+				
+				    <p:toolbar>  
+                        <p:toolbarGroup align="left">  
+                        <p:commandButton value="Consultar" action="#{professorMB.consultarProfesor}" ajax="false" icon="ui-icon-check" validateClient="true"  />
+                        <p:commandButton value="Cancelar" action="#{professorMB.cancelar}" immediate="true" ajax="false" icon="ui-icon-cancel"  />
+                        <p:commandButton value="Limpar" type="reset" ajax="false" icon="ui-icon-clear"  />
+                        </p:toolbarGroup>
+                    </p:toolbar>
+				
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<!-- data source -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/xlearning" />
+		<property name="username" value="root" />
+		<property name="password" value="123" />
+	</bean>
+	
+	<bean id="xlearningUrlAuthenticationSuccessHandler"
+        class="br.com.xlearning.mbean.login.XlearningUrlAuthenticationSuccessHandler" />
+
+
+	<bean id="userDetailsService"
+		class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<sec:http auto-config="true" access-denied-page="/negado.jsf">
+		<sec:form-login login-page="/index.xhtml" authentication-success-handler-ref="xlearningUrlAuthenticationSuccessHandler" 
+            default-target-url="/home.xhtml"  authentication-failure-url="/index.xhtml?error=true" />
+        <sec:intercept-url pattern="/administrativo/**" access="ROLE_ADMIN, ROLE_COORDENADOR" />
+        <sec:intercept-url pattern="/academico/professor/**" access="ROLE_PROFESSOR" />
+        <sec:intercept-url pattern="/academico/aluno/**" access="ROLE_ALUNO" />
+        <sec:intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+	</sec:http>
+
+	<sec:authentication-manager>
+		<sec:authentication-provider>
+			<sec:password-encoder hash="md5" />
+			<sec:jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="SELECT matricula, senha, 'true' as enable FROM usuario WHERE matricula=? AND status=1"
+				authorities-by-username-query="SELECT matricula, role, 'authority' FROM  usuario WHERE matricula=? AND status=1" />
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+</beans>
