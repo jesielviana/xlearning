@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import br.com.xlearning.mbean.infra.PageMB;
 import br.com.xlearning.mbean.navegacao.ConstantsNavigation;
 import br.com.xlearning.mbean.usuario.AlunoMB;
-import br.com.xlearning.usuario.service.impl.RoleServiceBean;
+import br.com.xlearning.usuario.service.impl.RoleServiceImpl;
 
 @ManagedBean
 @RequestScoped
@@ -21,7 +21,7 @@ public class RoleMB extends PageMB{
 	private static Logger logger = Logger.getLogger(AlunoMB.class);
 
 	@EJB
-	private RoleServiceBean roleService;
+	private RoleServiceImpl roleService;
 
 	public String adcionaRoles(){
 		try {

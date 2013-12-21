@@ -14,8 +14,8 @@ import javax.persistence.PersistenceException;
 
 import org.apache.log4j.Logger;
 
-import br.com.xlearning.conteudo.dao.ConteudoAcademicoRepository;
 import br.com.xlearning.conteudo.entidade.ConteudoAcademico;
+import br.com.xlearning.conteudo.repository.ConteudoAcademicoRepository;
 import br.com.xlearning.conteudo.service.ConteudoAcademicoService;
 import br.com.xlearning.disciplina.entidade.Disciplina;
 
@@ -26,9 +26,9 @@ import br.com.xlearning.disciplina.entidade.Disciplina;
 @Stateless
 @LocalBean
 @Local(ConteudoAcademicoService.class)
-public class ConteudoAcademicoServiceBean  implements ConteudoAcademicoService{
+public class ConteudoAcademicoServiceImpl  implements ConteudoAcademicoService{
 	
-	private static Logger logger = Logger.getLogger(ConteudoAcademicoServiceBean.class);
+	private static Logger logger = Logger.getLogger(ConteudoAcademicoServiceImpl.class);
 	@Inject
 	private ConteudoAcademicoRepository repository;
 

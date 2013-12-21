@@ -4,6 +4,7 @@
 package br.com.xlearning.questionario.service.impl;
 
 import java.util.List;
+
 import javax.ejb.EJBException;
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
@@ -11,8 +12,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 
-import br.com.xlearning.questionario.dao.QuestaoRepository;
 import br.com.xlearning.questionario.entidade.Questao;
+import br.com.xlearning.questionario.repository.QuestaoRepository;
 import br.com.xlearning.questionario.service.QuestaoService;
 
 /**

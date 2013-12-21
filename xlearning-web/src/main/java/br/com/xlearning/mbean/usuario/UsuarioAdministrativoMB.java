@@ -19,7 +19,7 @@ import br.com.xlearning.mbean.navegacao.NavigationMB;
 import br.com.xlearning.mbean.util.ConstantsMB;
 import br.com.xlearning.usuario.entidade.Usuario;
 import br.com.xlearning.usuario.entidade.UsuarioAdministrativo;
-import br.com.xlearning.usuario.service.impl.UsuarioAdministrativoServiceBean;
+import br.com.xlearning.usuario.service.impl.UsuarioAdministrativoServiceImpl;
 import br.com.xlearning.util.CriptografaUtil;
 
 @ManagedBean
@@ -29,7 +29,7 @@ public class UsuarioAdministrativoMB extends UsuarioMB {
 	private static final long serialVersionUID = 1L;
 	private static Logger logger = Logger.getLogger(UsuarioAdministrativoMB.class);
 	@EJB
-	private UsuarioAdministrativoServiceBean usuarioAdministrativoService;
+	private UsuarioAdministrativoServiceImpl usuarioAdministrativoService;
 	@Inject
 	private NavigationMB navigationMB;
 	private UsuarioAdministrativo usuarioAdm;

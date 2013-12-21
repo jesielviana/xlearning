@@ -15,7 +15,7 @@ import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import org.primefaces.event.RowEditEvent;
 import br.com.xlearning.curso.entidade.Curso;
-import br.com.xlearning.curso.service.impl.CursoServiceBean;
+import br.com.xlearning.curso.service.impl.CursoServiceImpl;
 import br.com.xlearning.disciplina.entidade.Disciplina;
 import br.com.xlearning.disciplina.service.DisciplinaService;
 import br.com.xlearning.enumeracao.status.EnumStatus;
@@ -41,7 +41,7 @@ public class DisciplinaMB extends PageMB {
 	@EJB
 	private DisciplinaService disciplinaService;
 	@EJB
-	private CursoServiceBean cursoService;
+	private CursoServiceImpl cursoService;
 	@EJB
 	private ProfessorService professorService;
 	@Inject

@@ -5,19 +5,21 @@
 package br.com.xlearning.usuario.service.impl;
 
 import java.util.List;
+
 import javax.ejb.EJBException;
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
+
 import org.apache.log4j.Logger;
 
 import br.com.xlearning.error.BusinessException;
 import br.com.xlearning.error.ErrorCode;
-import br.com.xlearning.usuario.dao.CoordenadorRepository;
-import br.com.xlearning.usuario.dao.UsuarioRepository;
 import br.com.xlearning.usuario.entidade.Coordenador;
+import br.com.xlearning.usuario.repository.CoordenadorRepository;
+import br.com.xlearning.usuario.repository.UsuarioRepository;
 import br.com.xlearning.usuario.service.CoordenadorService;
 
 /**
@@ -27,8 +29,8 @@ import br.com.xlearning.usuario.service.CoordenadorService;
 @Stateless
 @LocalBean
 @Local(CoordenadorService.class)
-public class CoordenadorServiceBean implements CoordenadorService{
-   private static Logger logger = Logger.getLogger(CoordenadorServiceBean.class);
+public class CoordenadorServiceImpl implements CoordenadorService{
+   private static Logger logger = Logger.getLogger(CoordenadorServiceImpl.class);
    @Inject
    private CoordenadorRepository coordenadorRepository;
    @Inject

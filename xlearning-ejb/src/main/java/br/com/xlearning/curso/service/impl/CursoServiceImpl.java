@@ -11,17 +11,17 @@ import javax.persistence.PersistenceException;
 
 import org.apache.log4j.Logger;
 
-import br.com.xlearning.curso.dao.CursoRepository;
 import br.com.xlearning.curso.entidade.Curso;
+import br.com.xlearning.curso.repository.CursoRepository;
 import br.com.xlearning.curso.service.CursoService;
 import br.com.xlearning.usuario.entidade.Coordenador;
 
 @Stateless
 @LocalBean
 @Local(CursoService.class)
-public class CursoServiceBean implements CursoService {
+public class CursoServiceImpl implements CursoService {
 
-	private static Logger logger = Logger.getLogger(CursoServiceBean.class);
+	private static Logger logger = Logger.getLogger(CursoServiceImpl.class);
 
 	@Inject
 	private CursoRepository cursoRepository;

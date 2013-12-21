@@ -11,9 +11,9 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import br.com.xlearning.enumeracao.status.StatusQuestionarioAluno;
-import br.com.xlearning.questionario.dao.QuestionarioAlunoRepository;
 import br.com.xlearning.questionario.entidade.Questionario;
 import br.com.xlearning.questionario.entidade.QuestionarioAluno;
+import br.com.xlearning.questionario.repository.QuestionarioAlunoRepository;
 import br.com.xlearning.questionario.service.QuestionarioAlunoService;
 import br.com.xlearning.usuario.entidade.Aluno;
 

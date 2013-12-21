@@ -16,7 +16,7 @@ import br.com.xlearning.enumeracao.status.StatusUsuario;
 import br.com.xlearning.mbean.infra.PageMB;
 import br.com.xlearning.mbean.navegacao.NavigationMB;
 import br.com.xlearning.usuario.entidade.Usuario;
-import br.com.xlearning.usuario.service.impl.RoleServiceBean;
+import br.com.xlearning.usuario.service.impl.RoleServiceImpl;
 import br.com.xlearning.util.XlearningUtil;
 
 /**
@@ -27,7 +27,7 @@ public abstract class UsuarioMB extends PageMB{
 	
 	private static final long serialVersionUID = 1L;
 	@EJB
-	private RoleServiceBean roleService;
+	private RoleServiceImpl roleService;
 	private Integer statusUsuario;
 	private String uf;
 	private String senha;
@@ -50,7 +50,7 @@ public abstract class UsuarioMB extends PageMB{
 		setStatusUsuario(usuario.getStatus());
 	}
 	
-	public RoleServiceBean getRoleService() {
+	public RoleServiceImpl getRoleService() {
 		return roleService;
 	}
 	public Integer getStatusUsuario() {
@@ -62,7 +62,7 @@ public abstract class UsuarioMB extends PageMB{
 	public NavigationMB getNavegacaoMbean() {
 		return navegacaoMbean;
 	}
-	public void setRoleService(RoleServiceBean roleService) {
+	public void setRoleService(RoleServiceImpl roleService) {
 		this.roleService = roleService;
 	}
 	public void setStatusUsuario(Integer statusUsuario) {

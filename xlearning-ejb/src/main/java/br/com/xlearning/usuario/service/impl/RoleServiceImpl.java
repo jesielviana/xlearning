@@ -23,7 +23,7 @@ import br.com.xlearning.usuario.service.RoleService;
 @Stateless
 @LocalBean
 @Local(RoleService.class)
-public class RoleServiceBean implements RoleService{
+public class RoleServiceImpl implements RoleService{
 	@Inject
 	private DAO<Roles> dao;
 	

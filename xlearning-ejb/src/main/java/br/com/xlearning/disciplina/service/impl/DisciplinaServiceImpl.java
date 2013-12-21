@@ -13,8 +13,8 @@ import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 
 import br.com.xlearning.curso.entidade.Curso;
-import br.com.xlearning.disciplina.dao.DisciplinaRepository;
 import br.com.xlearning.disciplina.entidade.Disciplina;
+import br.com.xlearning.disciplina.repository.DisciplinaRepository;
 import br.com.xlearning.disciplina.service.DisciplinaService;
 import br.com.xlearning.enumeracao.SituacaoAlunoDisciplina;
 
@@ -25,7 +25,7 @@ import br.com.xlearning.enumeracao.SituacaoAlunoDisciplina;
 @Stateless
 @LocalBean
 @Local(DisciplinaService.class)
-public class DisciplinaServiceBean implements DisciplinaService {
+public class DisciplinaServiceImpl implements DisciplinaService {
 
 	@Inject
 	private DisciplinaRepository disciplinaRepository;

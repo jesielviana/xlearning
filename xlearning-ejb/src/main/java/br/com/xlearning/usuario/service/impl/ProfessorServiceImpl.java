@@ -18,9 +18,9 @@ import org.apache.log4j.Logger;
 import br.com.xlearning.enumeracao.status.StatusUsuario;
 import br.com.xlearning.error.BusinessException;
 import br.com.xlearning.error.ErrorCode;
-import br.com.xlearning.usuario.dao.ProfessorRepository;
-import br.com.xlearning.usuario.dao.UsuarioRepository;
 import br.com.xlearning.usuario.entidade.Professor;
+import br.com.xlearning.usuario.repository.ProfessorRepository;
+import br.com.xlearning.usuario.repository.UsuarioRepository;
 import br.com.xlearning.usuario.service.ProfessorService;
 
 /**
@@ -30,9 +30,9 @@ import br.com.xlearning.usuario.service.ProfessorService;
 @Stateless
 @LocalBean
 @Local(ProfessorService.class)
-public class ProfessorServiceBean implements ProfessorService{
+public class ProfessorServiceImpl implements ProfessorService{
 	
-	private static Logger logger = Logger.getLogger(ProfessorServiceBean.class);
+	private static Logger logger = Logger.getLogger(ProfessorServiceImpl.class);
 	@Inject
 	private ProfessorRepository professorRepository;
    @Inject

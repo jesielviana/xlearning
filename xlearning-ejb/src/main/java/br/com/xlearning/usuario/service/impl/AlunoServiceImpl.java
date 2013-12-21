@@ -18,9 +18,9 @@ import br.com.xlearning.enumeracao.SituacaoAlunoDisciplina;
 import br.com.xlearning.enumeracao.status.StatusQuestionarioAluno;
 import br.com.xlearning.error.BusinessException;
 import br.com.xlearning.error.ErrorCode;
-import br.com.xlearning.usuario.dao.AlunoRepository;
-import br.com.xlearning.usuario.dao.UsuarioRepository;
 import br.com.xlearning.usuario.entidade.Aluno;
+import br.com.xlearning.usuario.repository.AlunoRepository;
+import br.com.xlearning.usuario.repository.UsuarioRepository;
 import br.com.xlearning.usuario.service.AlunoService;
 
 /**
@@ -32,8 +32,8 @@ import br.com.xlearning.usuario.service.AlunoService;
 @LocalBean
 @Local(AlunoService.class)
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class AlunoServiceBean implements AlunoService {
-	private static Logger logger = Logger.getLogger(AlunoServiceBean.class);
+public class AlunoServiceImpl implements AlunoService {
+	private static Logger logger = Logger.getLogger(AlunoServiceImpl.class);
 	@Inject
 	private AlunoRepository alunoRepository;
 	@Inject

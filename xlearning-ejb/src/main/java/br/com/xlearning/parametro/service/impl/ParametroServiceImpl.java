@@ -9,8 +9,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 
-import br.com.xlearning.parametro.dao.ParametroRepository;
 import br.com.xlearning.parametro.entidade.Parametro;
+import br.com.xlearning.parametro.repository.ParametroRepository;
 import br.com.xlearning.parametro.service.ParametroService;
 /**
  * 
@@ -20,7 +20,7 @@ import br.com.xlearning.parametro.service.ParametroService;
 @Stateless
 @LocalBean
 @Local(ParametroService.class)
-public class ParametroServiceBean implements ParametroService{
+public class ParametroServiceImpl implements ParametroService{
 
 	@Inject
 	private ParametroRepository parametroRepository;

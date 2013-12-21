@@ -5,19 +5,21 @@
 package br.com.xlearning.usuario.service.impl;
 
 import java.util.List;
+
 import javax.ejb.EJBException;
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
+
 import org.apache.log4j.Logger;
 
 import br.com.xlearning.error.BusinessException;
 import br.com.xlearning.error.ErrorCode;
-import br.com.xlearning.usuario.dao.UsuarioAdministrativoRepository;
-import br.com.xlearning.usuario.dao.UsuarioRepository;
 import br.com.xlearning.usuario.entidade.UsuarioAdministrativo;
+import br.com.xlearning.usuario.repository.UsuarioAdministrativoRepository;
+import br.com.xlearning.usuario.repository.UsuarioRepository;
 import br.com.xlearning.usuario.service.UsuarioAdministrativoService;
 
 /**
@@ -27,9 +29,9 @@ import br.com.xlearning.usuario.service.UsuarioAdministrativoService;
 @Stateless
 @LocalBean
 @Local(UsuarioAdministrativoService.class)
-public class UsuarioAdministrativoServiceBean implements UsuarioAdministrativoService{
+public class UsuarioAdministrativoServiceImpl implements UsuarioAdministrativoService{
 
-   private static Logger logger = Logger.getLogger(UsuarioAdministrativoServiceBean.class);
+   private static Logger logger = Logger.getLogger(UsuarioAdministrativoServiceImpl.class);
 	@Inject
 	private UsuarioAdministrativoRepository usuarioAdministrativoRepository;
    @Inject

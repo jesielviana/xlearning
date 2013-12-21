@@ -10,9 +10,10 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
+
 import br.com.xlearning.login.service.LoginService;
-import br.com.xlearning.usuario.dao.UsuarioRepository;
 import br.com.xlearning.usuario.entidade.Usuario;
+import br.com.xlearning.usuario.repository.UsuarioRepository;
 
 /**
  * @author Jesiel Viana Date 29/09/2013
@@ -21,7 +22,7 @@ import br.com.xlearning.usuario.entidade.Usuario;
 @Stateless
 @LocalBean
 @Local(LoginService.class)
-public class LoginServiceBean implements LoginService {
+public class LoginServiceImpl implements LoginService {
 
 	@Inject
 	private UsuarioRepository usuarioRepository;
