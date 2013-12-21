@@ -10,7 +10,4 @@
       <context-root>/xlearning</context-root>
     </web>
   </module>
-  <module>
-    <ejb>xlearning-ejb-1.0.jar</ejb>
-  </module>
 </application>
