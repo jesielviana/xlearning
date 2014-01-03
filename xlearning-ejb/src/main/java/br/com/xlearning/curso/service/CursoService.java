@@ -2,10 +2,10 @@ package br.com.xlearning.curso.service;
 
 import java.util.List;
 
-import javax.ejb.EJBException;
 import javax.persistence.PersistenceException;
 
 import br.com.xlearning.curso.entidade.Curso;
+import br.com.xlearning.error.BusinessException;
 import br.com.xlearning.usuario.entidade.Coordenador;
 /**
  * 
@@ -14,7 +14,7 @@ import br.com.xlearning.usuario.entidade.Coordenador;
  */
 public interface CursoService {
 	
-	public void adcionaCurso(Curso curso) throws PersistenceException, EJBException;
+	public void adcionaCurso(Curso curso) throws BusinessException;
 	
 	public Curso buscaCursoPorId(Long id) throws PersistenceException;
 	
@@ -26,6 +26,4 @@ public interface CursoService {
 	
 	public Curso getCursoPorCoordenador(Coordenador coordenador);
 	
-	public Curso getCursoPorNome(String nome);
-
 }

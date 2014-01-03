@@ -12,7 +12,7 @@ package br.com.xlearning.enumeracao;
  */
 public enum TipoPost
 {
-   ALUNOS(0, "Alunos"), PAGINA_INICIAL(1, "Página inicial"),  PROFESSOR(2, "Professores"),  
+	ALUNOS(0, "Alunos"), PAGINA_INICIAL(1, "Página inicial"),  PROFESSOR(2, "Professores"),  
    CURSO(3, "Cursos"),  USUARIOS(4, "Usuários"), PAGINA_CURSO(5, "Página do curso"), DISCIPLINA(6 , "Disciplina");
    
    private Integer chave;

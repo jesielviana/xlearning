@@ -90,7 +90,6 @@ public class QuestionarioMB extends PageMB {
 	private NavigationMB navigationMB;
 	
 	
-	@SuppressWarnings("unused")
 	@PostConstruct
 	private void init()
 	{

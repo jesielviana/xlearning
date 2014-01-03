@@ -59,7 +59,6 @@ public class ProfessorAcademicoMB extends UsuarioMB
    private LoginMB loginMB;
    private MenuModel menuModel;
 
-   @SuppressWarnings("unused")
    @PostConstruct
    private void init()
    {

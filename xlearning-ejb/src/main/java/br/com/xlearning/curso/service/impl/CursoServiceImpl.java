@@ -14,6 +14,8 @@ import org.apache.log4j.Logger;
 import br.com.xlearning.curso.entidade.Curso;
 import br.com.xlearning.curso.repository.CursoRepository;
 import br.com.xlearning.curso.service.CursoService;
+import br.com.xlearning.error.BusinessException;
+import br.com.xlearning.error.ErrorCode;
 import br.com.xlearning.usuario.entidade.Coordenador;
 
 @Stateless
@@ -26,8 +28,9 @@ public class CursoServiceImpl implements CursoService {
 	@Inject
 	private CursoRepository cursoRepository;
 
-	public void adcionaCurso(Curso curso) throws PersistenceException, EJBException
+	public void adcionaCurso(Curso curso) throws BusinessException
 	{
+		isCursoJaCadastrado(curso.getNome());
 		try
 		{
 			cursoRepository.adiciona(curso);
@@ -75,8 +78,12 @@ public class CursoServiceImpl implements CursoService {
 		return cursoRepository.getCursoPorCoordenador(coordenador);
 	}
 
-	@Override
-	public Curso getCursoPorNome(String nome) {
-		return cursoRepository.getCursoPorNome(nome);
+	
+	private void isCursoJaCadastrado(String nome) throws PersistenceException, BusinessException
+	{
+		if (cursoRepository.getCursoPorNome(nome) != null)
+		{
+			throw new BusinessException(ErrorCode.CURSO_JA_CADSTRADO);
+		}
 	}
 }

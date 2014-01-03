@@ -13,13 +13,16 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+
 import org.apache.log4j.Logger;
 import org.primefaces.model.UploadedFile;
+
 import br.com.xlearning.constantes.NumeroParametro;
 import br.com.xlearning.curso.entidade.Curso;
 import br.com.xlearning.curso.service.CursoService;
 import br.com.xlearning.disciplina.entidade.Disciplina;
 import br.com.xlearning.enumeracao.status.EnumStatus;
+import br.com.xlearning.error.BusinessException;
 import br.com.xlearning.mbean.infra.PageMB;
 import br.com.xlearning.mbean.model.CursoDataModel;
 import br.com.xlearning.mbean.navegacao.ConstantsNavigation;
@@ -59,34 +62,40 @@ public class CursoMB extends PageMB {
 	private UploadedFile file;
 	private boolean cursosCadastrados;
 
-	@SuppressWarnings("unused")
 	@PostConstruct
-	private void init() {
+	private void init()
+	{
 		getNavigationMB().limparSessao();
 	}
 
-	public Curso getCurso() {
+	public Curso getCurso()
+	{
 		return curso;
 	}
 
-	public void inicializaCadastro() {
+	public void inicializaCadastro()
+	{
 		coordenadores = coordenadorService.getTodosCoordenadores();
 	}
 
-	public void inicializaConsulta() {
+	public void inicializaConsulta()
+	{
 		cursos = cursoService.getListaTodosCursosAtivos();
 		cursoDataModel = new CursoDataModel(cursos);
 		existeCursosCadastrados();
 	}
 
-	private void existeCursosCadastrados() {
-		if (cursos.size() < 1) {
+	private void existeCursosCadastrados()
+	{
+		if (cursos.size() < 1)
+		{
 			addErrorMessage("Não existe cursos cadastrados");
 			setCursosCadastrados(true);
 		}
 	}
 
-	public void setCurso(Curso curso) {
+	public void setCurso(Curso curso)
+	{
 		this.curso = curso;
 	}
 
@@ -96,12 +105,15 @@ public class CursoMB extends PageMB {
 	 * 
 	 * @throws IOException
 	 */
-	public void fileUpload() throws IOException {
-		if (file.getFileName().isEmpty()) {
+	public void fileUpload() throws IOException
+	{
+		if (file.getFileName().isEmpty())
+		{
 			return;
 		}
 		FileOutputStream fout = null;
-		try {
+		try
+		{
 
 			// Cria um arquivo UploadFile, para receber o arquivo do evento
 
@@ -113,8 +125,7 @@ public class CursoMB extends PageMB {
 
 			File diretorio = new File(PATH_LOGO_CURSOS);
 			diretorio.mkdirs();
-			String extesao = arq.getFileName().substring(
-					arq.getFileName().indexOf("."));
+			String extesao = arq.getFileName().substring(arq.getFileName().indexOf("."));
 			String nomeImage = curso.getNome() + extesao;
 			File file = new File(PATH_LOGO_CURSOS + nomeImage);
 
@@ -125,20 +136,24 @@ public class CursoMB extends PageMB {
 			// enviado
 
 			String caminho = file.getAbsolutePath();
-			logger.info("A imagem [" + arq.getFileName() + "] foi salva em: ["
-					+ caminho + "]");
+			logger.info("A imagem [" + arq.getFileName() + "] foi salva em: [" + caminho + "]");
 
 			this.curso.setNomeLogo(nomeImage);
 
 			fout = new FileOutputStream(file);
 
-			while (in.available() != 0) {
+			while (in.available() != 0)
+			{
 				fout.write(in.read());
 			}
 			fout.close();
-		} catch (Exception ex) {
+		}
+		catch (Exception ex)
+		{
 			ex.printStackTrace();
-		} finally {
+		}
+		finally
+		{
 			fout.close();
 		}
 	}
@@ -146,25 +161,31 @@ public class CursoMB extends PageMB {
 	/**
     * 
     */
-	private boolean carregaParametroLogoCurso() {
-		try {
-			PATH_LOGO_CURSOS = parametroService
-					.getParametroString(NumeroParametro.PATH_LOGO_CURSOS);
-			if (PATH_LOGO_CURSOS == null) {
+	private boolean carregaParametroLogoCurso()
+	{
+		try
+		{
+			PATH_LOGO_CURSOS = parametroService.getParametroString(NumeroParametro.PATH_LOGO_CURSOS);
+			if (PATH_LOGO_CURSOS == null)
+			{
 				logger.error("não existe parâmetro cadastrado.");
 				addErrorMessage("Não existe parâmetro cadastrado para logo de cursos");
 				return false;
 			}
 			return true;
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			logger.error("não existe parâmetro cadastrado.");
 			addErrorMessage("Não existe parâmetro cadastrado para logo de cursos");
 			return false;
 		}
 	}
 
-	private boolean preencheStatus() {
-		if (getStatusCurso() == null) {
+	private boolean preencheStatus()
+	{
+		if (getStatusCurso() == null)
+		{
 			addErrorMessage("Selecione o status do curso");
 			return false;
 		}
@@ -172,25 +193,36 @@ public class CursoMB extends PageMB {
 		return true;
 	}
 
-	private void preencheCoordenador() {
+	private void preencheCoordenador()
+	{
 		if (matriculaCoordanador != null && matriculaCoordanador > 0)
-			this.curso.setCoordenador(coordenadorService
-					.buscaCoordenadorPorId(matriculaCoordanador));
+			this.curso.setCoordenador(coordenadorService.buscaCoordenadorPorId(matriculaCoordanador));
 	}
 
-	public String adicionarCurso() {
-		try {
-			if (!validaNome() || !carregaParametroLogoCurso() | !validaLogo()
-					| !preencheStatus()) {
+	public String adicionarCurso()
+	{
+		try
+		{
+			if (!carregaParametroLogoCurso() | !validaLogo() | !preencheStatus())
+			{
 				return null;
 			}
 			fileUpload();
 
-			if (matriculaCoordanador != null && matriculaCoordanador > 0) {
+			if (matriculaCoordanador != null && matriculaCoordanador > 0)
+			{
 				preencheCoordenador();
 			}
 			cursoService.adcionaCurso(this.curso);
-		} catch (Exception e) {
+		}
+		catch (BusinessException e)
+		{
+			addErrorMessage(e);
+			e.printStackTrace();
+			return null;
+		}
+		catch (Exception e)
+		{
 			addErrorMessage("Erro ao adcionar curso");
 			return null;
 		}
@@ -200,44 +232,44 @@ public class CursoMB extends PageMB {
 		return null;
 	}
 
-	private boolean validaNome() {
-		if (cursoService.getCursoPorNome(this.curso.getNome()) != null) {
-			addErrorMessage("Curso já cadastrado");
-			return false;
-		}
-		return true;
-	}
-
 	/**
 	 * Verifica se o usuário selecionou seu avatar
 	 * 
 	 * @return
 	 */
-	private boolean validaLogo() {
-		if (file.getFileName().isEmpty()) {
+	private boolean validaLogo()
+	{
+		if (file.getFileName().isEmpty())
+		{
 			addErrorMessage("Selecione a logo do curso");
 			return false;
 		}
 		return true;
 	}
 
-	public List<Curso> getCursos() {
+	public List<Curso> getCursos()
+	{
 		return cursos;
 	}
 
-	public String paginaAlterarCurso() {
+	public String paginaAlterarCurso()
+	{
 		recuperaSatatus(curso);
 		recuperaCoordenador(curso);
 		return ConstantsNavigation.ALTERAR_CURSO;
 	}
 
-	public String alterarCurso() {
-		try {
+	public String alterarCurso()
+	{
+		try
+		{
 			preencheStatus();
 			preencheCoordenador();
 			fileUpload();
 			cursoService.atualizaCurso(curso);
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			addErrorMessage("Erro ao atualizar curso");
 			return null;
 		}
@@ -246,98 +278,122 @@ public class CursoMB extends PageMB {
 		return ConstantsNavigation.CONSULTAR_CURSO;
 	}
 
-	public Integer getStatusCurso() {
+	public Integer getStatusCurso()
+	{
 		return statusCurso;
 	}
 
-	public void setStatusCurso(Integer statusCurso) {
+	public void setStatusCurso(Integer statusCurso)
+	{
 		this.statusCurso = statusCurso;
 	}
 
-	public List<EnumStatus> getStatusItens() {
+	public List<EnumStatus> getStatusItens()
+	{
 		return Arrays.asList(EnumStatus.values());
 	}
 
-	private void recuperaSatatus(Curso curso) {
+	private void recuperaSatatus(Curso curso)
+	{
 		setStatusCurso(curso.getStatus());
 	}
 
-	private void recuperaCoordenador(Curso curso) {
-		if (curso.getCoordenador() != null) {
+	private void recuperaCoordenador(Curso curso)
+	{
+		if (curso.getCoordenador() != null)
+		{
 			setMatriculaCoordanador(curso.getCoordenador().getMatricula());
 		}
 	}
 
-	public CursoDataModel getCursoDataModel() {
+	public CursoDataModel getCursoDataModel()
+	{
 		return cursoDataModel;
 	}
 
-	public void setCursoDataModel(CursoDataModel cursoDataModel) {
+	public void setCursoDataModel(CursoDataModel cursoDataModel)
+	{
 		this.cursoDataModel = cursoDataModel;
 	}
 
-	public List<Disciplina> getDisciplinas() {
+	public List<Disciplina> getDisciplinas()
+	{
 		return disciplinas;
 	}
 
-	public void setDisciplinas(List<Disciplina> disciplinas) {
+	public void setDisciplinas(List<Disciplina> disciplinas)
+	{
 		this.disciplinas = disciplinas;
 	}
 
-	public List<String> getCodigoDisciplinas() {
+	public List<String> getCodigoDisciplinas()
+	{
 		return codigoDisciplinas;
 	}
 
-	public void setCodigoDisciplinas(List<String> codigoDisciplinas) {
+	public void setCodigoDisciplinas(List<String> codigoDisciplinas)
+	{
 		this.codigoDisciplinas = codigoDisciplinas;
 	}
 
-	public Long getMatriculaCoordanador() {
+	public Long getMatriculaCoordanador()
+	{
 		return matriculaCoordanador;
 	}
 
-	public void setMatriculaCoordanador(Long matriculaCoordanador) {
+	public void setMatriculaCoordanador(Long matriculaCoordanador)
+	{
 		this.matriculaCoordanador = matriculaCoordanador;
 	}
 
-	public List<Coordenador> getCoordenadores() {
+	public List<Coordenador> getCoordenadores()
+	{
 		return coordenadores;
 	}
 
-	public void setCoordenadores(List<Coordenador> coordenadores) {
+	public void setCoordenadores(List<Coordenador> coordenadores)
+	{
 		this.coordenadores = coordenadores;
 	}
 
-	public UploadedFile getFile() {
+	public UploadedFile getFile()
+	{
 		return file;
 	}
 
-	public void setFile(UploadedFile file) {
+	public void setFile(UploadedFile file)
+	{
 		this.file = file;
 	}
 
-	public boolean isCursosCadastrados() {
+	public boolean isCursosCadastrados()
+	{
 		return cursosCadastrados;
 	}
 
-	public void setCursosCadastrados(boolean cursosCadastrados) {
+	public void setCursosCadastrados(boolean cursosCadastrados)
+	{
 		this.cursosCadastrados = cursosCadastrados;
 	}
 
-	public NavigationMB getNavigationMB() {
+	public NavigationMB getNavigationMB()
+	{
 		return navigationMB;
 	}
 
-	public void setNavigationMB(NavigationMB navigationMB) {
+	public void setNavigationMB(NavigationMB navigationMB)
+	{
 		this.navigationMB = navigationMB;
 	}
 
-	public String cancelar() {
+	public String cancelar()
+	{
 		navigationMB.limparSessao();
 		return ConstantsNavigation.PAGINA_INICIAL_ADMINISTRATIVO;
 	}
 
-	public String cancelarALteracao() {
+	public String cancelarALteracao()
+	{
 		curso = new Curso();
 		return ConstantsNavigation.RESULTADO_CONSULTA_CURSO;
 	}

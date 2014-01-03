@@ -77,7 +77,6 @@ public class AlunoAcademicoMB extends PageMB {
 	private StreamedContent file;  
 	private String filePath;
 
-	@SuppressWarnings("unused")
 	@PostConstruct
 	private void init()
 	{

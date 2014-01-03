@@ -93,7 +93,6 @@ public class ConteudoAcademicoMB extends PageMB {
 	private String pathConteudo;
 	private MenuModel menuModel;
 
-	@SuppressWarnings("unused")
 	@PostConstruct
 	private void init()
 	{

@@ -59,7 +59,6 @@ public class QuestionarioAlunoMB extends PageMB {
 	private LoginMB loginMB;
 	private MenuModel menuModel;
 
-	@SuppressWarnings("unused")
 	@PostConstruct
 	private void init()
 	{

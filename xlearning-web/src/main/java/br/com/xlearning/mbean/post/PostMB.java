@@ -291,7 +291,7 @@ public class PostMB extends PageMB {
 	private void recuperarDadosPost(Post post)
 	{
 		setStatusPost(post.getStatus());
-		setTipoPost(post.getTipo());
+		setTipoPost(post.getTipo().getChave());
 	}
 
 	public Post getPost()

@@ -88,7 +88,6 @@ public class TurmaMB extends PageMB {
 	private List<Aluno> alunosTarget;
 	private List<Aluno> alunosRemovidos;
 
-	@SuppressWarnings("unused")
 	@PostConstruct
 	private void init()
 	{
