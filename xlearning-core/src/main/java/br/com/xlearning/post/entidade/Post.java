@@ -3,6 +3,7 @@ package br.com.xlearning.post.entidade;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +22,8 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.annotations.Type;
 
 import br.com.xlearning.curso.entidade.Curso;
 import br.com.xlearning.disciplina.entidade.Disciplina;
@@ -70,7 +73,10 @@ public class Post implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "tipo")
-    @Enumerated
+    @Type(type = "br.com.xlearning.enumeracao.GenericEnumPersistenceType",  
+		parameters = { @org.hibernate.annotations.Parameter(name = "enumClass", 
+		value = "br.com.xlearning.enumeracao.TipoPost") 
+        })
     private TipoPost tipo;
     @NotNull
     @Column(name = "status")
@@ -133,8 +139,8 @@ public class Post implements Serializable {
         this.dataFinal = dataFinal;
     }
 
-    public int getTipo() {
-        return tipo.getChave();
+    public TipoPost getTipo() {
+        return tipo;
     }
     
     public TipoPost getTipoDescricao() {

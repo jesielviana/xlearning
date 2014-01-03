@@ -10,6 +10,7 @@ package br.com.xlearning.error;
  */
 public class ErrorCode {
 	
-	public static int CPF_JA_CADASTRADO = 001;
+	public static int CPF_JA_CADASTRADO = 1;
+	public static int CURSO_JA_CADSTRADO = 2;
 
 }
