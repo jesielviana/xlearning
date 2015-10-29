@@ -10,7 +10,7 @@
 
 	<parent>
 		<groupId>br.com.xlearning</groupId>
-		<artifactId>xlearning-server</artifactId>
+		<artifactId>xlearning</artifactId>
 		<version>1.0</version>
 	</parent>
 
