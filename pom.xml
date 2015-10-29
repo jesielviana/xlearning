@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.xlearning</groupId>
 	<version>1.0</version>
-	<artifactId>xlearning-server</artifactId>
+	<artifactId>xlearning</artifactId>
 	<packaging>pom</packaging>
 
 	<properties>
