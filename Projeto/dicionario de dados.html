@@ -1,0 +1,995 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>DBdoc</title> 
+</head> 
+<style type="text/css"> 
+	table {width: 100%; border-collapse: collapse;} 
+	table, td, th {border: 1px solid black;} 
+</style> 
+<body> 
+<h1>mydb</h1> 
+<ol> 
+</ol> 
+<ol> 
+<h1>xlearning</h1> 
+<ol> 
+<li><a href="#admin">admin</a> (1 campos)</li><li><a href="#aluno">aluno</a> (2 campos)</li><li><a href="#aluno_disciplina">aluno_disciplina</a> (8 campos)</li><li><a href="#conteudo_academico">conteudo_academico</a> (8 campos)</li><li><a href="#coordenador">coordenador</a> (1 campos)</li><li><a href="#curso">curso</a> (6 campos)</li><li><a href="#disciplina">disciplina</a> (5 campos)</li><li><a href="#notificacao">notificacao</a> (6 campos)</li><li><a href="#opcoes">opcoes</a> (4 campos)</li><li><a href="#parametro">parametro</a> (4 campos)</li><li><a href="#post">post</a> (10 campos)</li><li><a href="#professor">professor</a> (1 campos)</li><li><a href="#questao">questao</a> (6 campos)</li><li><a href="#questionario">questionario</a> (5 campos)</li><li><a href="#questionario_aluno">questionario_aluno</a> (6 campos)</li><li><a href="#resposta">resposta</a> (4 campos)</li><li><a href="#roles">roles</a> (2 campos)</li><li><a href="#turma">turma</a> (5 campos)</li><li><a href="#turma_aluno">turma_aluno</a> (2 campos)</li><li><a href="#turma_disciplina">turma_disciplina</a> (2 campos)</li><li><a href="#usuario">usuario</a> (12 campos)</li></ol> 
+<ol> 
+<li id="admin"> 
+<h2>admin</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>matricula</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do administrador</td> 
+</tr> 
+</table> 
+</li> 
+<li id="aluno"> 
+<h2>aluno</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>matricula</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do aluno</td> 
+</tr> 
+<tr> 
+   <td>curso</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Curso do aluno</td> 
+</tr> 
+</table> 
+</li> 
+<li id="aluno_disciplina"> 
+<h2>aluno_disciplina</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>aluno</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do aluno</td> 
+</tr> 
+<tr> 
+   <td>disciplina</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador da disciplina</td> 
+</tr> 
+<tr> 
+   <td>frequecia</td> 
+   <td>FLOAT</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Frequência do aluno na disciplina</td> 
+</tr> 
+<tr> 
+   <td>media</td> 
+   <td>FLOAT</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Média do aluno na disciplina</td> 
+</tr> 
+<tr> 
+   <td>nota1</td> 
+   <td>FLOAT</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Primeira nota do aluno.</td> 
+</tr> 
+<tr> 
+   <td>nota2</td> 
+   <td>FLOAT</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Segunda nota do aluno</td> 
+</tr> 
+<tr> 
+   <td>situacao</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Situação do aluno na disciplina(a cursar, cursando, cursada)</td> 
+</tr> 
+<tr> 
+   <td>status_aprovacao</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Status do aluno na disciplina(não curso, aprovado ou reprovado)</td> 
+</tr> 
+</table> 
+</li> 
+<li id="conteudo_academico"> 
+<h2>conteudo_academico</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idconteudo_academico</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do conteúdo</td> 
+</tr> 
+<tr> 
+   <td>caminho</td> 
+   <td>VARCHAR(200)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Localização do conteúdo</td> 
+</tr> 
+<tr> 
+   <td>dataPostagem</td> 
+   <td>DATETIME</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Data de postagem do conteúdo</td> 
+</tr> 
+<tr> 
+   <td>descricao</td> 
+   <td>LONGTEXT</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Descrição do conteúdo</td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(45)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Nome do conteúdo</td> 
+</tr> 
+<tr> 
+   <td>tipo</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Tipo de conteúdo(pdf, video, outros)</td> 
+</tr> 
+<tr> 
+   <td>curso</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Curso do conteúdo</td> 
+</tr> 
+<tr> 
+   <td>disciplina</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Disciplina do conteúdo</td> 
+</tr> 
+</table> 
+</li> 
+<li id="coordenador"> 
+<h2>coordenador</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>matricula</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do coordenador</td> 
+</tr> 
+</table> 
+</li> 
+<li id="curso"> 
+<h2>curso</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idCurso</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do curso</td> 
+</tr> 
+<tr> 
+   <td>descricao</td> 
+   <td>LONGTEXT</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Descrição que informa o que é o curso</td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(45)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Nome do curso</td> 
+</tr> 
+<tr> 
+   <td>nomeLogo</td> 
+   <td>VARCHAR(120)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>logo do curso</td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Status do curso(ativo, inativo)</td> 
+</tr> 
+<tr> 
+   <td>coordenador</td> 
+   <td>BIGINT(20)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Coordenador do curso</td> 
+</tr> 
+</table> 
+</li> 
+<li id="disciplina"> 
+<h2>disciplina</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>iddisciplina</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador da disciplina</td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(45)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Nome da disciplina</td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Status da disciplina(Ativa, Inativa)</td> 
+</tr> 
+<tr> 
+   <td>curso</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Curso da disciplina</td> 
+</tr> 
+<tr> 
+   <td>professor</td> 
+   <td>BIGINT(20)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Professor da disciplina</td> 
+</tr> 
+</table> 
+</li> 
+<li id="notificacao"> 
+<h2>notificacao</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idnotificacao</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>assunto</td> 
+   <td>VARCHAR(45)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>data</td> 
+   <td>DATE</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>grupo_destino</td> 
+   <td>VARCHAR(255)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>mensagem</td> 
+   <td>LONGTEXT</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+<tr> 
+   <td>usuario</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td></td> 
+</tr> 
+</table> 
+</li> 
+<li id="opcoes"> 
+<h2>opcoes</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idopcoes</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador da opção</td> 
+</tr> 
+<tr> 
+   <td>opcao</td> 
+   <td>VARCHAR(45)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Opção de resposta</td> 
+</tr> 
+<tr> 
+   <td>opcao_correta</td> 
+   <td>TINYINT(1)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Marca a opção correta</td> 
+</tr> 
+<tr> 
+   <td>questao</td> 
+   <td>BIGINT(20)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Questão da opção</td> 
+</tr> 
+</table> 
+</li> 
+<li id="parametro"> 
+<h2>parametro</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>codigo</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do parâmetro</td> 
+</tr> 
+<tr> 
+   <td>descricao</td> 
+   <td>VARCHAR(45)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Descrição do parâmetro</td> 
+</tr> 
+<tr> 
+   <td>tipo</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Tipo de parâmetro(String, int, boolean)</td> 
+</tr> 
+<tr> 
+   <td>valor</td> 
+   <td>VARCHAR(120)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Valor do parâmetro</td> 
+</tr> 
+</table> 
+</li> 
+<li id="post"> 
+<h2>post</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idPost</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do post</td> 
+</tr> 
+<tr> 
+   <td>conteudo</td> 
+   <td>LONGTEXT</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Conteúdo do post</td> 
+</tr> 
+<tr> 
+   <td>data_final</td> 
+   <td>DATE</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Data inicial de disponibilidade do post</td> 
+</tr> 
+<tr> 
+   <td>data_inicial</td> 
+   <td>DATE</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Data final de disponibilidade do post</td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Status do post(habilitado, desabilitado)</td> 
+</tr> 
+<tr> 
+   <td>tipo</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Tipo de post(página inicial, alunos, curso)</td> 
+</tr> 
+<tr> 
+   <td>titulo</td> 
+   <td>VARCHAR(45)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Título do post</td> 
+</tr> 
+<tr> 
+   <td>curso</td> 
+   <td>BIGINT(20)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Curso do post</td> 
+</tr> 
+<tr> 
+   <td>disciplina</td> 
+   <td>BIGINT(20)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Disciplina do post</td> 
+</tr> 
+<tr> 
+   <td>usuario</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Usuário que criou o post</td> 
+</tr> 
+</table> 
+</li> 
+<li id="professor"> 
+<h2>professor</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>matricula</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do professor</td> 
+</tr> 
+</table> 
+</li> 
+<li id="questao"> 
+<h2>questao</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idquestao</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador da questão</td> 
+</tr> 
+<tr> 
+   <td>numero</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Número da questão</td> 
+</tr> 
+<tr> 
+   <td>pergunta</td> 
+   <td>VARCHAR(200)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Pergunta da questão</td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Status da questão(ativa, inativa)</td> 
+</tr> 
+<tr> 
+   <td>tipo</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Tipo de questão(objetiva)</td> 
+</tr> 
+<tr> 
+   <td>questionario</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Questionário da questão</td> 
+</tr> 
+</table> 
+</li> 
+<li id="questionario"> 
+<h2>questionario</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idquestionario</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do questionário</td> 
+</tr> 
+<tr> 
+   <td>data_final</td> 
+   <td>DATETIME</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Data inicial de disponibilização do questionário</td> 
+</tr> 
+<tr> 
+   <td>data_inicial</td> 
+   <td>DATETIME</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Data final de disponibilização do questionário</td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(45)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Nome do questionário</td> 
+</tr> 
+<tr> 
+   <td>disciplina</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Disciplina do questionário</td> 
+</tr> 
+</table> 
+</li> 
+<li id="questionario_aluno"> 
+<h2>questionario_aluno</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>aluno</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do aluno</td> 
+</tr> 
+<tr> 
+   <td>questionario</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do questionário</td> 
+</tr> 
+<tr> 
+   <td>avaliacao</td> 
+   <td>FLOAT</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Resultado do aluno no questionário</td> 
+</tr> 
+<tr> 
+   <td>data_final</td> 
+   <td>DATETIME</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Data de conclusão do questionário</td> 
+</tr> 
+<tr> 
+   <td>data_inicial</td> 
+   <td>DATETIME</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Data de início do questionário</td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Status de conclusão do questionário(sem repsonder, em andamento, concluído)</td> 
+</tr> 
+</table> 
+</li> 
+<li id="resposta"> 
+<h2>resposta</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idresposta</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador da resposta</td> 
+</tr> 
+<tr> 
+   <td>aluno</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Aluno que respondeu</td> 
+</tr> 
+<tr> 
+   <td>opcao</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Opção selecionada</td> 
+</tr> 
+<tr> 
+   <td>questao</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Questão respondida</td> 
+</tr> 
+</table> 
+</li> 
+<li id="roles"> 
+<h2>roles</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>role</td> 
+   <td>VARCHAR(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador de permissão do usuário</td> 
+</tr> 
+<tr> 
+   <td>descricao</td> 
+   <td>VARCHAR(45)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Descrição da permissão</td> 
+</tr> 
+</table> 
+</li> 
+<li id="turma"> 
+<h2>turma</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>idturma</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador da turma</td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(45)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Nome da turma</td> 
+</tr> 
+<tr> 
+   <td>semestre</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Semestre da turma</td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>INT(11)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Status da turma(aberta, concluída, concluida)</td> 
+</tr> 
+<tr> 
+   <td>curso</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Curso da turma</td> 
+</tr> 
+</table> 
+</li> 
+<li id="turma_aluno"> 
+<h2>turma_aluno</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>turma</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador da turma</td> 
+</tr> 
+<tr> 
+   <td>aluno</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do aluno</td> 
+</tr> 
+</table> 
+</li> 
+<li id="turma_disciplina"> 
+<h2>turma_disciplina</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>turma</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador da turma</td> 
+</tr> 
+<tr> 
+   <td>disciplina</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador da disciplina</td> 
+</tr> 
+</table> 
+</li> 
+<li id="usuario"> 
+<h2>usuario</h2> 
+<p></p> 
+<table> 
+<tr> 
+<th>CAMPO</th> 
+<th>TIPO</th> 
+<th>NULO</th> 
+<th>EXTRA</th> 
+<th>COMENTARIOS</th> 
+</tr> 
+<tr> 
+   <td>matricula</td> 
+   <td>BIGINT(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Identificador do usuário</td> 
+</tr> 
+<tr> 
+   <td>avatar</td> 
+   <td>VARCHAR(200)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Imagem do usuário</td> 
+</tr> 
+<tr> 
+   <td>cidade</td> 
+   <td>VARCHAR(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Cidade em que o usuário mora</td> 
+</tr> 
+<tr> 
+   <td>cpf</td> 
+   <td>VARCHAR(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>CPF do usuário</td> 
+</tr> 
+<tr> 
+   <td>email</td> 
+   <td>VARCHAR(45)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Email do usuário</td> 
+</tr> 
+<tr> 
+   <td>endereco</td> 
+   <td>VARCHAR(100)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Endereço do usuário</td> 
+</tr> 
+<tr> 
+   <td>nome</td> 
+   <td>VARCHAR(60)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Nome do usuário</td> 
+</tr> 
+<tr> 
+   <td>senha</td> 
+   <td>VARCHAR(50)</td> 
+    <td>SI</td> 
+    <td> - </td> 
+    <td>Senha de acesso do usuário</td> 
+</tr> 
+<tr> 
+   <td>status</td> 
+   <td>INT(11)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Status do usuário no sistema</td> 
+</tr> 
+<tr> 
+   <td>telefone</td> 
+   <td>VARCHAR(255)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Telefone do usuário</td> 
+</tr> 
+<tr> 
+   <td>uf</td> 
+   <td>VARCHAR(255)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Estado em que o usuário reside</td> 
+</tr> 
+<tr> 
+   <td>role</td> 
+   <td>VARCHAR(20)</td> 
+    <td>NO</td> 
+    <td> - </td> 
+    <td>Permissão do usuário</td> 
+</tr> 
+</table> 
+</li> 
+</ol> 
+</body> 
+</html>
